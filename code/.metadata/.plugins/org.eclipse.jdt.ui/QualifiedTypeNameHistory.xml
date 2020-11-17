@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="java.lang.Cloneable"/>
+    <fullyQualifiedTypeName name="LearnSynchronization.SynchronizedBlock"/>
+    <fullyQualifiedTypeName name="LearnSynchronization.SynchronizedBlock1"/>
+    <fullyQualifiedTypeName name="LearnSynchronization.StaticSynchronization"/>
+    <fullyQualifiedTypeName name="LearnSynchronization.Table"/>
+    <fullyQualifiedTypeName name="LearnSynchronization.Table4"/>
+    <fullyQualifiedTypeName name="java.lang.System"/>
+    <fullyQualifiedTypeName name="OopsBasics.Rectangle"/>
+    <fullyQualifiedTypeName name="OopsBasics.Employee"/>
+    <fullyQualifiedTypeName name="OopsBasics.InvoiceItem"/>
+    <fullyQualifiedTypeName name="OopsBasics.Account"/>
+    <fullyQualifiedTypeName name="javax.swing.text.html.HTMLDocument.Iterator"/>
+    <fullyQualifiedTypeName name="java.util.stream.Stream"/>
+    <fullyQualifiedTypeName name="java.util.IdentityHashMap"/>
+    <fullyQualifiedTypeName name="Sorting.SortByRollNo"/>
+    <fullyQualifiedTypeName name="Basics.MyComparator"/>
+    <fullyQualifiedTypeName name="java.util.TreeSet"/>
+    <fullyQualifiedTypeName name="com.mysql.jdbc.Driver"/>
+    <fullyQualifiedTypeName name="java.lang.Integer"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="java.lang.Override"/>
+    <fullyQualifiedTypeName name="java.sql.DriverManager"/>
+    <fullyQualifiedTypeName name="java.util.Scanner"/>
+    <fullyQualifiedTypeName name="java.sql.PreparedStatement"/>
+    <fullyQualifiedTypeName name="java.sql.ResultSet"/>
+    <fullyQualifiedTypeName name="Interface.Movable"/>
+    <fullyQualifiedTypeName name="Interface.MovableCircle"/>
+    <fullyQualifiedTypeName name="Interface.MovablePoint"/>
+    <fullyQualifiedTypeName name="Interface.Stack"/>
+    <fullyQualifiedTypeName name="java.util.HashMap"/>
+    <fullyQualifiedTypeName name="java.util.Set"/>
+    <fullyQualifiedTypeName name="java.util.Map"/>
+    <fullyQualifiedTypeName name="java.util.Collections"/>
+    <fullyQualifiedTypeName name="java.lang.Comparable"/>
+    <fullyQualifiedTypeName name="java.util.Comparator"/>
+    <fullyQualifiedTypeName name="java.util.LinkedHashMap"/>
+    <fullyQualifiedTypeName name="java.util.Map.Entry"/>
+    <fullyQualifiedTypeName name="java.util.Iterator"/>
+</qualifiedTypeNameHistroy>

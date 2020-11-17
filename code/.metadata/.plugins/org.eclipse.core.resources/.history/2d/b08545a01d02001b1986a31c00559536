@@ -1,0 +1,14 @@
+package Enum;
+
+public class Main {
+	public static void main(String[] args) {
+		EnumClass.Season[] itr = EnumClass.Season.values();
+		
+		for(EnumClass.Season season: itr) {
+			System.out.println(season);
+		}
+		
+		System.out.println("Value of WINTER" + EnumClass.Season.valueOf("WINTER"));
+		
+	}
+}

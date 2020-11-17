@@ -1,0 +1,21 @@
+package Enum;
+
+public class Main {
+	enum Player{
+		DHONI,VIRAT,ROHIT,DHAWAN
+	}
+	public static void main(String[] args) {
+		EnumClass.Season[] itr = EnumClass.Season.values();
+		
+		for(EnumClass.Season season: itr) {
+			System.out.println(season);
+		}
+		
+		System.out.println("Value of WINTER: " + EnumClass.Season.valueOf("WINTER"));
+		System.out.println("Value of FALL: " + EnumClass.Season.valueOf("FALL"));
+		
+		System.out.println("Index of " + Player.valueOf("VIRAT") + ":" +Player.valueOf("VIRAT").ordinal());
+		System.out.println("Index of " + Player.valueOf("DHAWAN") + ":" +Player.valueOf("DHAWAN").ordinal());
+		
+	}
+}

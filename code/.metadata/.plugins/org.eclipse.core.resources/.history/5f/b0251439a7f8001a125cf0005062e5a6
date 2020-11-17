@@ -1,0 +1,9 @@
+package Sorting;
+
+import java.util.Comparator;
+
+public class SortByAge implements Comparator {
+ public int compare(Student stu1, Student stu2) {
+	 return stu1.age - stu2.age;
+ }
+}

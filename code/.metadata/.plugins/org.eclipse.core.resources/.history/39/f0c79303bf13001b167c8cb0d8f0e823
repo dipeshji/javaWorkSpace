@@ -1,0 +1,9 @@
+package OopsBasics;
+
+public class RectangleIn {
+
+	public RectangleIn() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

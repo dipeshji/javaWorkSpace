@@ -1,0 +1,8 @@
+
+public class ValueOf {
+public static void main(String args[]) {
+	int value = 10;
+	String intToString = String.valueOf(value);
+	System.out.println(intToString);
+}
+}

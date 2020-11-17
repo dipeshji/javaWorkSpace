@@ -1,0 +1,52 @@
+package OopsBasics;
+
+public class Book {
+	private String bookName;
+	Author author;
+	private double price;
+	private int qty = 0;
+	
+	Book(String bookName, Author author, double price){
+		this.bookName = bookName;
+		this.author = author;
+		this.price = price;
+	}
+	
+	Book(String bookName, Author author, double price, int qty){
+		this.bookName = bookName;
+		this.author = author;
+		this.price = price;
+		this.qty = qty;
+	}
+
+	public String getBookName() {
+		return bookName;
+	}
+
+	public Author getAuthor() {
+		return author;
+	}
+
+	public double getPrice() {
+		return price;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
+	}
+
+	public int getQty() {
+		return qty;
+	}
+
+	public void setQty(int qty) {
+		this.qty = qty;
+	}
+	
+	@Override
+	public String toString() {
+		return " Book" + "[" + " Book Name = " + bookName + "," + " Author[" + " Name = " + author.getName() + " Email = " + author.getEmail() + " Gender = " + author.getGender() +"]" + "," + " Price = " + price + " Quantity = " + qty + "]";
+	}
+	
+	
+}

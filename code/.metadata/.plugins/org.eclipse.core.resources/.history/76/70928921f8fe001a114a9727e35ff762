@@ -1,0 +1,32 @@
+package Generics;
+
+public class TestGenerics {
+	public static void main(String[] args) {
+		Basic<String> str = new Basic<>(new String());
+		Basic<Integer> intO = new Basic<>(10);
+		
+		System.out.println("Class name : " + str.getClassName());
+		System.out.println("Class name : " + intO.getClassName());
+		
+		Basic<PassClassAsGenericArgument> pass = new Basic<>(new PassClassAsGenericArgument());
+		System.out.println("Class name : " + pass.getClassName());
+		
+		GenericMethod toAdd = new GenericMethod();
+		toAdd.add(10, 20);
+		
+//		=======================================================
+		
+		BoundedTypesWithGenerics<C> objC = new BoundedTypesWithGenerics<C>(new C());
+		objC.runTest();
+		
+		BoundedTypesWithGenerics<A> objA = new BoundedTypesWithGenerics<A>(new A());
+		objA.runTest();
+		
+		
+		BoundedTypesWithGenerics<B> objB = new BoundedTypesWithGenerics<B>(new B());
+		objB.runTest(); 
+		
+//		BoundedTypesWithGenerics<String> str = new BoundedTypesWithGenerics<String>(new String()); Compile Time Error
+//		BoundedTypesWithGenerics<D> objD = new BoundedTypesWithGenerics<D>(new D()); Compile Time Error
+	}
+}

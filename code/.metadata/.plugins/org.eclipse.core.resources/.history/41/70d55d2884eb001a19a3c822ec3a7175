@@ -1,0 +1,5 @@
+package LearnSynchronization;
+
+public class SynchronizedMethod {
+
+}

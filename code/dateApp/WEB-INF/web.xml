@@ -1,0 +1,21 @@
+<web-app>
+	<servlet>
+		<servlet-name>Date App</servlet-name>
+		<servlet-class>DateApp</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>Date App</servlet-name>
+		<url-pattern>date</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>Date App2</servlet-name>
+		<servlet-class>DateApp2</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>Date App2</servlet-name>
+		<url-pattern>/date2</url-pattern>
+	</servlet-mapping>
+</web-app>

@@ -1,0 +1,22 @@
+package String;
+
+public class ReverseString {
+
+	public static void main(String[] args) {
+		String str1 = "I love java, the coffe";
+		String str2 = "";
+		
+		
+		String[] splitArray = str1.split(" ");
+		
+		for(int i = splitArray.length; i<=0; i-- ) {
+			System.out.println(splitArray[i]);
+			str2 += splitArray[i];
+			System.out.println(str2);
+		}
+		
+		System.out.println(str2);
+	}
+	
+	
+}

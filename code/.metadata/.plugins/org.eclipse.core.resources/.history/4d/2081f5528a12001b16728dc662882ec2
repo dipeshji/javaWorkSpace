@@ -1,0 +1,38 @@
+package Basics;
+import java.lang.Comparable;
+import java.util.ArrayList;
+import java.util.Iterator;
+
+public class ArrayListComparableAndComparator implements Comparable<ArrayListComparableAndComparator>{
+	private String name;
+	
+	ArrayListComparableAndComparator(String name){
+		this.name = name;
+	}
+	
+	@Override
+	public int compareTo(ArrayListComparableAndComparator obj1) {
+		return this.name.compareTo(obj1.name);
+	}
+	
+	@Override
+	public String toString() {
+		return this.name;
+	}
+	
+	
+}
+
+class mainClass{
+	public static void main(String[] args) {
+		ArrayList<ArrayListComparableAndComparator> nameAl = new ArrayList<>();
+		
+		nameAl.add(new ArrayListComparableAndComparator("Dipesh"));
+		nameAl.add(new ArrayListComparableAndComparator("Ankit"));
+		nameAl.add(new ArrayListComparableAndComparator("Mahesh"));
+		nameAl.add(new ArrayListComparableAndComparator("Sandeep"));
+		nameAl.add(new ArrayListComparableAndComparator("Palak"));
+		
+		nameAl.stream().map(obj -> obj.name).forEach(System.out::print);
+	}
+}

@@ -1,0 +1,26 @@
+package Generics;
+
+public class MultipleBounds<T extends A & B & C> {
+	
+	private T objRef;
+	
+	public MultipleBounds(T objRef) {
+		this.objRef = objRef;
+	}
+	
+	
+}
+
+interface Bint{
+	public void displayMessage();
+}
+
+interface Cint{
+	public void displaYMessage();
+}
+
+class Acls implements B,C {
+	public void displayMessage() {
+		System.out.println("Class A display message");
+	}
+}

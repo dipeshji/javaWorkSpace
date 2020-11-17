@@ -1,0 +1,54 @@
+package JDBCconnection;
+import java.sql.*;
+import java.util.*;
+import java.io.*;
+//import  java.sql.Connection;
+
+
+public class DbConnection {
+	public static void main(String[] args)throws Exception {
+		
+		System.out.println("Please enter Date Base to use");
+		
+		Scanner scan = new Scanner(System.in);
+		String useDB = scan.nextLine();
+		System.out.println(useDB);
+		String basePath = "/home/dipesh/Documents/java_workspace/code/JDBC/src/JDBCconnection/";
+		String propertiesFile = useDB + ".properties";
+		String credentials = useDB + "Credentials" + ".properties";
+		
+		
+		FileInputStream ip = new FileInputStream(basePath + propertiesFile);
+		Properties p = new Properties();
+		p.load(ip);
+		
+		
+		FileInputStream cred = new FileInputStream(basePath + credentials);
+		Properties cp = new Properties();
+		cp.load(cred);
+		
+		
+		try {
+			Class.forName(p.getProperty("user.dbDriver"));
+			System.out.println(p.getProperty("user.dbUrl") + p.getProperty("user.dbName"));
+			Connection con = DriverManager.getConnection(p.getProperty("user.dbUrl") + p.getProperty("user.dbName"),cp.getProperty("user.name"),cp.getProperty("user.password"));  
+			Statement stmt = con.createStatement();
+			String stmtQ = p.getProperty("user.update");
+//			ResultSet res = stmt.executeQuery("select * from employees");
+//			while(res.next()) {
+//				System.out.println(res.getInt(1) + "   " +res.getString(3)+"      "+res.getString(2));
+//			}
+			int status = stmt.executeUpdate(stmtQ);
+			System.out.println(status);
+			ResultSet res = stmt.executeQuery("select * from employees");
+			while(res.next()) {
+				System.out.println(res.getInt(1) + "   " +res.getString(3)+"      "+res.getString(2));
+			}
+			con.close();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+}
+

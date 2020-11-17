@@ -1,0 +1,1056 @@
+SELECT DISTINCT
+    columns
+FROM
+    table_name
+WHERE
+    where_conditions;
+
+SELECT 
+    lastname
+FROM
+    employees
+ORDER BY lastname
+
+SELECT DISTINCT
+    lastname
+FROM
+    employees
+ORDER BY lastname
+
+MySQL DISTINCT and NULL values
+
+
+SELECT DISTINCT
+    state
+FROM
+    customers;
+
+
+MySQL DISTINCT with multiple columns
+
+SELECT DISTINCT
+    state, city
+FROM
+    customers
+WHERE
+    state IS NOT NULL
+ORDER BY state , city;
+
+Without the  DISTINCT  clause, you will get duplicate combination of state and city
+
+DISTINCT clause vs. GROUP BY clause
+
+If you use the GROUP BY clause in the  SELECT  statement without using aggregate functions, 
+the  GROUP BY  clause behaves like the  DISTINCT  clause
+
+SELECT 
+    state
+FROM
+    customers
+GROUP BY state;
+
+You can achieve the similar result by using the  DISTINCT  clause:
+SELECT DISTINCT
+    state
+FROM
+    customers;
+
+GROUP BY  clause sorts the result set whereas the  DISTINCT  clause does not.
+
+MySQL DISTINCT and aggregate function
+
+SELECT 
+    COUNT(DISTINCT state)
+FROM
+    customers
+WHERE
+    country = 'USA';
+
+
+MySQL ORDER BY
+
+SELECT column1, column2,...
+FROM tbl
+ORDER BY column1 [ASC|DESC], column2 [ASC|DESC],...
+
+
+SELECT 
+    contactLastname, contactFirstname
+FROM
+    customers
+ORDER BY contactLastname
+
+SELECT 
+    contactLastname, contactFirstname
+FROM
+    customers
+ORDER BY contactLastname DESC;
+
+SELECT 
+    contactLastname, contactFirstname
+FROM
+    customers
+ORDER BY contactLastname DESC , contactFirstname ASC;
+
+
+Where:
+
+SELECT 
+    lastname, firstname, jobtitle
+FROM
+    employees
+WHERE
+    jobtitle = 'Sales Rep';
+
+
+SELECT 
+    lastname, firstname, jobtitle
+FROM
+    employees
+WHERE
+    jobtitle = 'Sales Rep' AND officeCode = 1
+
+
+Operator
+
+
+= Equal to. You can use it with almost any data types. 
+<> or != Not equal to. 
+< Less than. You typically use it with numeric and date/time data types. 
+> Greater than. 
+<= Less than or equal to 
+>= Greater than or equal to 
+
+SELECT 
+    lastname, firstname, jobtitle
+FROM
+    employees
+WHERE
+    jobtitle <> 'Sales Rep';
+
+17/3/2016
+More on MySQL WHERE clause…
+
+There are also some useful operators that you can use in the  WHERE  clause to form complex conditions such as:
+•BETWEEN selects values within a range of values.
+•LIKE matches value based on pattern matching.
+•IN specifies if the value matches any value in a list.
+•IS NULL checks if the value is NULL
+
+MySQL IN Operator
+
+The  IN   operator allows you to determine if a specified value matches any one of a list or a subquery. The following illustrates the syntax of the  IN   operator.
+
+SELECT 
+    column1,column2,...
+FROM
+    table_name
+WHERE 
+ (expr|column_1) IN ('value1','value2',...);
+
+The  IN  operator returns 1 if the value of the  column_1 
+ or the result of the  expr   expression is equal to any value in the list, otherwise, it returns 0.
+When the values in the list are all constants:
+•First, MySQL evaluates the values based on the type of the  column_1  or result of the   expr   expression.
+•Second, MySQL sorts the values.
+•Third, MySQL searches for values using binary search algorithm.
+ Therefore, a query that uses the  IN   operator with a list of constants will perform very fast.
+
+Note that if the  expr  or any value in the list is  NULL , the  IN   operator returns  NULL 
+
+
+
+SELECT 
+    officeCode, city, phone
+FROM
+    offices
+WHERE
+    country IN ('USA' , 'France');
+
+SELECT 
+    officeCode, city, phone
+FROM
+    offices
+WHERE
+    country NOT IN ('USA' , 'France');
+
+MySQL IN with subquery
+For example, if you want to find orders whose total amounts are greater 
+than 60000, you use the  IN  operator as the following  query
+
+SELECT 
+    orderNumber, customerNumber, status, shippedDate
+FROM
+    orders
+WHERE
+    Orders.orderNumber IN (SELECT 
+            orderdetails.orderNumber
+        FROM
+            orderDetails
+        GROUP BY orderNumber
+        HAVING SUM(quantityOrdered * priceEach) > 60000);
+
+two sub query
+
+1.
+SELECT 
+    orderNumber
+FROM
+    orderDetails
+GROUP BY orderNumber
+HAVING SUM(quantityOrdered * priceEach) > 60000
+2.
+SELECT 
+    orderNumber, customerNumber, status, shippedDate
+FROM
+    orders
+WHERE
+    orderNumber IN (10165,10287,10310);
+
+Between:
+
+SELECT 
+    productCode, productName, buyPrice
+FROM
+    products
+WHERE
+    buyPrice BETWEEN 90 AND 100;
+
+
+When you use the  BETWEEN  operator with date values, to get the best result, 
+you should use the type cast to explicitly convert the type of column or expression to the DATE type.
+SELECT 
+    orderNumber, requiredDate, status
+FROM
+    orders
+WHERE
+    requireddate BETWEEN CAST('2003-01-01' AS DATE) AND CAST('2003-01-31' AS DATE);
+
+Like:
+
+The  LIKE  operator is commonly used to select data based on patterns. Using the  LIKE  
+operator in the right way is essential to increase the query performance
+
+MySQL provides two wildcard characters for using with the  LIKE  operator, the percentage   %  and underscore  _  .
+•The percentage (  %  ) wildcard allows you to match any string of zero or more characters.
+•The underscore (  _  ) wildcard allows you to match any single character
+
+SELECT 
+    employeeNumber, lastName, firstName
+FROM
+    employees
+WHERE
+    firstName LIKE 'a%';
+
+SELECT 
+    employeeNumber, lastName, firstName
+FROM
+    employees
+WHERE
+    lastName LIKE '%on'
+
+ELECT 
+    employeeNumber, lastName, firstName
+FROM
+    employees
+WHERE
+    lastName LIKE '%_%on%_%'
+
+SELECT 
+    employeeNumber, lastName, firstName
+FROM
+    employees
+WHERE
+    firstname LIKE 'T_m';
+
+SELECT 
+    employeeNumber, lastName, firstName
+FROM
+    employees
+WHERE
+    lastName NOT LIKE 'B%';
+
+
+SELECT 
+    productCode, productName
+FROM
+    products
+WHERE
+    productCode LIKE '%\_20%';
+
+
+SELECT 
+    productCode, productName
+FROM
+    products
+WHERE
+    productCode LIKE '%$_20%' ESCAPE '$';
+The  LIKE  operator forces MySQL to scan the whole table to find the matching rows,
+ therefore, it does not allow the database engine to use an index for fast searching. 
+As the result, the performance of the query that uses the  LIKE  operator degrades when
+ you query data from a table that has a large number of rows
+
+
+UNION 
+
+There are some rules that you need to follow in order to use the UNION operator:
+•The number of columns appears in the corresponding SELECT statements must be equal.
+•The columns appear in  the corresponding positions of each  SELECT  statement must have
+ the same data type or, at least, convertible data type.
+
+By default, the  UNION  operator eliminates duplicate rows from the result even if
+you don’t use DISTINCT operator explicitly. Therefore, it is said that  
+UNION  clause is the shortcut of the  UNION DISTINCT  
+
+UNION ALL  
+
+
+SELECT customerNumber id, contactLastname name
+FROM customers
+UNION
+SELECT employeeNumber id,firstname name
+FROM employees
+
+(SELECT customerNumber, contactLastname
+FROM customers)
+UNION
+(SELECT employeeNumber, firstname
+FROM employees)
+ORDER BY contactLastname, customerNumber
+
+UNION with ORDER BY
+
+(SELECT customerNumber id,contactLastname name
+FROM customers)
+UNION
+(SELECT employeeNumber id,firstname name
+FROM employees)
+ORDER BY name,id
+
+(SELECT customerNumber, contactLastname
+FROM customers)
+UNION
+(SELECT employeeNumber,firstname
+FROM employees)
+ORDER BY 2, 1
+
+alias for columns
+
+
+SELECT 
+    CONCAT_WS(', ', lastName, firstname)  
+FROM
+    employees;
+
+SELECT 
+    CONCAT_WS(', ', lastName, firstname) AS `Full name`
+FROM
+    employees;
+
+you can use the column alias in the ORDER BY, 
+GROUP BY and HAVING clauses to refer to the column
+
+SELECT 
+    CONCAT_WS(', ', lastName, firstname) `Full name`
+FROM
+    employees
+ORDER BY `Full name`;
+
+SELECT 
+    orderNumber `Order no.`,
+    SUM(priceEach * quantityOrdered) Total
+FROM
+    orderDetails
+GROUP BY `Order no.`
+HAVING total > 60000;
+
+
+23/3/2016
+alias for tables
+
+SELECT 
+    customerName, COUNT(o.orderNumber) total
+FROM
+    customers c
+        INNER JOIN
+    orders o ON c.customerNumber = o.customerNumber
+GROUP BY customerName
+ORDER BY total DESC
+
+INNER JOIN clause
+
+The MySQL INNER JOIN clause matches rows in one table with rows in other 
+tables and allows you to query rows that contain columns from both tables.
+
+The MySQL INNER JOIN clause is an optional part of the SELECT statement. 
+It appears immediately after the  FROM  clause.
+
+SELECT column_list
+FROM t1
+INNER JOIN t2 ON join_condition1
+INNER JOIN t3 ON join_condition2
+...
+WHERE where_conditions
+
+SELECT 
+    productCode, productName, textDescription
+FROM
+    products T1
+        INNER JOIN
+    productlines T2 ON T1.productline = T2.productline;
+
+
+
+SELECT 
+    T1.orderNumber,
+    status,
+    ROUND(SUM(quantityOrdered * priceEach), 2) total
+FROM
+    orders AS T1
+        INNER JOIN
+    orderdetails AS T2 ON T1.orderNumber = T2.orderNumber
+GROUP BY orderNumber
+
+
+LEFT JOIN  /ven diagram
+
+SELECT 
+    T1.c1, T1.c2, T2.c1, T2.c2
+FROM
+    T1
+        LEFT JOIN
+    T2 ON T1.c1 = T2.c1
+When we join the  T1  table  to the  T2  table using the  LEFT JOIN   clause, if a row from 
+the left table  T1   matches a row from the right table  T2   based on the join condition (  T1.c1 = T2.c1  ), 
+this row is included in the result set. In case the row in the left table does not match the row in the right 
+table, the row in the left table is also selected and combined with a “fake” row from the right table. The fake 
+row contains  NULL  values for all corresponding columns in the SELECT  clause.
+
+SELECT 
+    c.customerNumber, c.customerName, orderNumber, o.status
+FROM
+    customers c
+        LEFT JOIN
+    orders o ON c.customerNumber = o.customerNumber;
+
+MySQL LEFT JOIN clause to find unmatched rows
+
+The  LEFT JOIN   clause is very useful when you want to find the rows in the left table 
+that do not match with the rows in the right table. To find the unmatched rows between two tables, 
+you add a WHERE clause to the  SELECT  statement to select only rows whose column values in the right 
+table contains the  NULL  values.
+
+SELECT 
+    c.customerNumber, c.customerName, orderNumber, o.status
+FROM
+    customers c
+        LEFT JOIN
+    orders o ON c.customerNumber = o.customerNumber
+WHERE
+    orderNumber IS NULL
+
+MySQL self join
+
+joins a table to itself using join statement
+
+In order to get the whole organization structure, we can join the  employees  table to 
+itself using the  employeeNumber  and  reportsTo  columns. The  employees  table has two roles: 
+one is Manager and the other is Direct Report.
+
+
+SELECT CONCAT(m.lastname,', ',m.firstname) AS 'Manager',
+       CONCAT(e.lastname,', ',e.firstname) AS 'Direct report' 
+FROM employees e
+INNER JOIN employees m ON m.employeeNumber = e.reportsto
+ORDER BY manager
+
+INNER JOIN   clause to the  LEFT JOIN   clause in the query above to include the top manager. 
+We also need to use the IFNULL function to display the top manager if the manger’s name is  NULL 
+
+SELECT 
+    IFNULL(CONCAT(m.lastname, ', ', m.firstname),
+            'Top Manager') AS 'Manager',
+    CONCAT(e.lastname, ', ', e.firstname) AS 'Direct report'
+FROM
+    employees e
+        LEFT JOIN
+    employees m ON m.employeeNumber = e.reportsto
+ORDER BY manager DESC
+
+list of customers who locate in the same city by joining the   customers  table to itself.
+SELECT 
+    c1.city, c1.customerName, c2.customerName
+FROM
+    customers c1
+        INNER JOIN
+    customers c2 ON c1.city = c2.city
+        AND c1.customername <> c2.customerName
+ORDER BY c1.city;
+
+GROUP BY clause
+
+groups a set of rows into a set of summary rows by values of columns or expressions. The  GROUP BY 
+ clause returns one row for each group. In other words, it reduces the number of rows in the result set
+We often use the  GROUP BY  clause with aggregate functions such as SUM, AVG, MAX, MIN, and COUNT. 
+
+
+SELECT 
+    c1, c2,..., cn, aggregate_function(ci)
+FROM
+    table
+WHERE
+    where_conditions
+GROUP BY c1 , c2,...,cn;
+
+SELECT 
+    status
+FROM
+    orders
+GROUP BY status;
+
+SELECT 
+    status, COUNT(*)
+FROM
+    orders
+GROUP BY status
+
+SELECT 
+    status, TRUNCATE(SUM(quantityOrdered * priceEach),2) AS amount
+FROM
+    orders
+        INNER JOIN
+    orderdetails USING (orderNumber)
+GROUP BY status;
+
+MySQL GROUP BY with expression example
+
+The following query gets the total sales for each year. We use the  
+YEAR  function to extract the year from order date (  orderDate ). We only consider 
+orders with  shipped  status in the total sales. Notice that the expression appears 
+in the  SELECT  clause must be the same as the one in the  GROUP BY  clause
+SELECT  clause provides the information about each group.
+
+SELECT 
+    YEAR(orderDate) AS year,
+    TRUNCATE(SUM(quantityOrdered * priceEach),
+        2) AS total
+FROM
+    orders
+        INNER JOIN
+    orderdetails USING (orderNumber)
+WHERE
+    status = 'Shipped'
+GROUP BY YEAR(orderDate);
+
+MySQL GROUP BY with HAVING clause
+
+SELECT 
+    YEAR(orderDate) AS year,
+    TRUNCATE(SUM(quantityOrdered * priceEach),
+        2) AS total
+ FROM
+    orders
+        INNER JOIN
+    orderdetails USING (orderNumber)
+WHERE
+    status = 'Shipped'
+GROUP BY year
+HAVING year > 2003
+
+HAVING clause
+
+HAVING clause is used in the SELECT statement to specify filter conditions for a group of rows or aggregates.
+The MySQL HAVING clause is often used with the GROUP BY clause. When using with the  GROUP BY  clause, we can 
+apply a filter condition to the columns that appear in the  GROUP BY  clause. If the  GROUP BY  clause is omitted,
+ the  HAVING  clause behaves like the WHERE clause
+
+Left Outer Join:
+
+SELECT 
+    c.customerNumber, c.customerName, orderNumber, o.status
+FROM
+    customers c
+        LEFT JOIN
+    orders o ON c.customerNumber = o.customerNumber
+
+25/3/2016
+
+MySQL LEFT JOIN clause to find unmatched rows
+SELECT 
+    c.customerNumber, c.customerName, orderNumber, o.status
+FROM
+    customers c
+        LEFT JOIN
+    orders o ON c.customerNumber = o.customerNumber
+WHERE
+    orderNumber IS NULL;
+
+MySQL self join examples:
+By using MySQL self join, we can display a list of customers who locate in the same city by joining the   customers  table to itself.
+SELECT 
+    c1.city, c1.customerName, c2.customerName
+FROM
+    customers c1
+        INNER JOIN
+    customers c2 ON c1.city = c2.city
+        AND c1.customername <> c2.customerName
+ORDER BY c1.city
+
+Subquery:
+
+A MySQL subquery is a query that is nested inside another query such as SELECT, INSERT, UPDATE or DELETE. In addition, a MySQL subquery can be nested inside another subquery
+
+Select lastname, firstname
+from employees
+where officecode in (select officecode from offices where country='USA')
+
+SELECT customerNumber,
+       checkNumber,
+       amount
+FROM payments
+WHERE amount = (
+ SELECT MAX(amount) 
+        FROM payments
+);
+
+SELECT customerNumber,
+       checkNumber,
+    amount
+FROM payments
+WHERE amount > (
+ SELECT AVG(amount) 
+    FROM payments
+);
+
+SELECT customername
+FROM customers
+WHERE customerNumber NOT IN(
+ SELECT DISTINCT customernumber
+ FROM orders
+);
+
+SELECT customerName
+FROM customers
+WHERE EXISTS (
+    SELECT priceEach * quantityOrdered
+    FROM orderdetails
+    WHERE priceEach * quantityOrdered > 10000
+    GROUP BY orderNumber
+)
+
+SELECT customerName
+FROM customers
+WHERE not EXISTS (
+    SELECT priceEach * quantityOrdered
+    FROM orderdetails
+    WHERE priceEach * quantityOrdered > 10000
+    GROUP BY orderNumber
+)
+
+MySQL subquery in FROM clause:
+SELECT max(items),
+       min(items),
+       floor(avg(items))
+FROM
+(SELECT orderNumber, 
+ count(orderNumber) AS items
+FROM orderdetails
+GROUP BY orderNumber) AS lineitems
+
+MySQL correlated subquery
+SELECT productname,
+       buyprice
+FROM products AS p1
+WHERE buyprice > ( 
+ SELECT AVG(buyprice)
+ FROM products
+        WHERE productline = p1.productline)
+
+previous examples- the subquery is independent. It means you can execute the subquery as a single query. 
+correlated subquery - is a subquery that uses the information from the outer query, or you can say that a correlated subquery depends on the outer query. A correlated subquery is evaluated once for each row in the outer query
+
+29/3/2016
+
+Simple MySQL INSERT statement:
+
+INSERT INTO table(column1,column2...)
+VALUES (value1,value2,...);
+
+MySQL INSERT with SELECT clause:
+
+INSERT INTO table_1
+SELECT c1, c2, FROM table_2;
+
+MySQL INSERT with ON DUPLICATE KEY UPDATE:
+
+  INSERT INTO tasks(task_id,subject,start_date,end_date,description)
+VALUES (4,'Test ON DUPLICATE KEY UPDATE','2010-01-01','2010-01-02','Next Priority')
+ON DUPLICATE KEY UPDATE 
+   task_id = task_id + 1, 
+   subject = 'Test ON DUPLICATE KEY UPDATE'
+
+update:
+
+UPDATE employees 
+SET 
+    email = 'mary.patterson@classicmodelcars.com'
+WHERE
+    employeeNumber = 1056;
+
+UPDATE employees 
+SET 
+    lastname = 'Hill',
+    email = 'mary.hill@classicmodelcars.com'
+WHERE
+    employeeNumber = 1056;
+
+MySQL UPDATE JOIN syntax
+
+UPDATE T1, T2
+SET T1.c2 = T2.c2,
+      T2.c3 = expr
+WHERE T1.c1 = T2.c1 AND condition
+
+UPDATE employees
+        INNER JOIN
+    merits ON employees.performance = merits.performance 
+SET 
+    salary = salary + salary * percentage;
+
+UPDATE employees
+        LEFT JOIN
+    merits ON employees.performance = merits.performance 
+SET 
+    salary = salary + salary * 0.015
+WHERE
+    merits.percentage IS NULL;
+
+MySQL delete from one table:
+DELETE FROM table   
+[WHERE conditions] [ORDER BY ...] [LIMIT rows]
+
+MySQL delete from multiple tables:
+DELETE table_1, table_2,...
+FROM table-refs   
+[WHERE conditions]
+ 
+DELETE FROM table_1, table_2,...
+USING table-refs
+[WHERE conditions]
+
+DELETE employees, 
+    offices 
+FROM employees, 
+ offices 
+WHERE employees.officeCode = offices.officeCode  AND 
+      offices.officeCode = 1
+
+DELETE FROM employees, offices 
+USING employees, offices 
+WHERE employees.officeCode = offices.officeCode  AND 
+      offices.officeCode = 1
+
+MySQL DELETE JOIN with INNER JOIN:
+DELETE T1, T2
+FROM T1
+INNER JOIN T2 ON T1.key = T2.key
+WHERE condition
+
+DELETE offices, employees 
+FROM offices
+INNER JOIN employees 
+      ON employees.officeCode = employees.officeCode
+WHERE offices.officeCode = 5
+
+DELETE customers
+FROM customers
+LEFT JOIN orders ON customers.customerNumber = orders.customerNumber
+WHERE orderNumber IS NULL;
+
+1/4/2016
+MySQL ON DELETE CASCADE Example:
+CREATE TABLE buildings (
+  building_no int(11) NOT NULL AUTO_INCREMENT,
+  building_name varchar(255) NOT NULL,
+  address varchar(355) NOT NULL,
+  PRIMARY KEY (building_no)
+) ;
+CREATE TABLE rooms (
+  room_no int(11) NOT NULL AUTO_INCREMENT,
+  room_name varchar(255) NOT NULL,
+  building_no int(11) NOT NULL,
+  PRIMARY KEY (room_no),
+  KEY building_no (building_no),
+  CONSTRAINT rooms_ibfk_1 
+  FOREIGN KEY (building_no) 
+  REFERENCES buildings (building_no) 
+  ON DELETE CASCADE
+);
+INSERT INTO buildings(building_name,address)
+VALUES('ACME Headquaters','3950 North 1st Street CA 95134'),
+      ('ACME Sales','5000 North 1st Street CA 95134')
+
+INSERT INTO rooms(room_name,building_no)
+VALUES('Amazon',1),
+      ('War Room',1),
+      ('Office of CEO',1),
+      ('Marketing',2),
+      ('Showroom',2)
+
+DELETE FROM buildings
+WHERE building_no = 2
+
+SELECT * FROM rooms
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ALTER [IGNORE] TABLE tbl_name
+    [alter_specification [, alter_specification] ...]
+    [partition_options]
+
+alter_specification:
+    table_options
+  | ADD [COLUMN] col_name column_definition
+        [FIRST | AFTER col_name ]
+  | ADD [COLUMN] (col_name column_definition,...)
+  | ADD {INDEX|KEY} [index_name]
+        [index_type] (index_col_name,...) [index_option] ...
+  | ADD [CONSTRAINT [symbol]] PRIMARY KEY
+        [index_type] (index_col_name,...) [index_option] ...
+  | ADD [CONSTRAINT [symbol]]
+        UNIQUE [INDEX|KEY] [index_name]
+        [index_type] (index_col_name,...) [index_option] ...
+  | ADD FULLTEXT [INDEX|KEY] [index_name]
+        (index_col_name,...) [index_option] ...
+  | ADD SPATIAL [INDEX|KEY] [index_name]
+        (index_col_name,...) [index_option] ...
+  | ADD [CONSTRAINT [symbol]]
+        FOREIGN KEY [index_name] (index_col_name,...)
+        reference_definition
+  | ALGORITHM [=] {DEFAULT|INPLACE|COPY}
+  | ALTER [COLUMN] col_name {SET DEFAULT literal | DROP DEFAULT}
+  | CHANGE [COLUMN] old_col_name new_col_name column_definition
+        [FIRST|AFTER col_name]
+  | LOCK [=] {DEFAULT|NONE|SHARED|EXCLUSIVE}
+  | MODIFY [COLUMN] col_name column_definition
+        [FIRST | AFTER col_name]
+  | DROP [COLUMN] col_name
+  | DROP PRIMARY KEY
+  | DROP {INDEX|KEY} index_name
+  | DROP FOREIGN KEY fk_symbol
+  | DISABLE KEYS
+  | ENABLE KEYS
+  | RENAME [TO|AS] new_tbl_name
+  | RENAME {INDEX|KEY} old_index_name TO new_index_name
+  | ORDER BY col_name [, col_name] ...
+  | CONVERT TO CHARACTER SET charset_name [COLLATE collation_name]
+  | [DEFAULT] CHARACTER SET [=] charset_name [COLLATE [=] collation_name]
+  | DISCARD TABLESPACE
+  | IMPORT TABLESPACE
+  | FORCE
+  | {WITHOUT|WITH} VALIDATION
+  | ADD PARTITION (partition_definition)
+  | DROP PARTITION partition_names
+  | DISCARD PARTITION {partition_names | ALL} TABLESPACE
+  | IMPORT PARTITION {partition_names | ALL} TABLESPACE
+  | TRUNCATE PARTITION {partition_names | ALL}
+  | COALESCE PARTITION number
+
+  | REORGANIZE PARTITION partition_names INTO (partition_definitions)
+  | EXCHANGE PARTITION partition_name WITH TABLE tbl_name [{WITH|WITHOUT} VALIDATION]
+  | ANALYZE PARTITION {partition_names | ALL}
+  | CHECK PARTITION {partition_names | ALL}
+  | OPTIMIZE PARTITION {partition_names | ALL}
+  | REBUILD PARTITION {partition_names | ALL}
+  | REPAIR PARTITION {partition_names | ALL}
+  | REMOVE PARTITIONING
+  | UPGRADE PARTITIONING
+
+
+
+
+Trigger:
+
+A SQL trigger is a set of SQL statements stored in the database catalog. A SQL trigger is executed or fired whenever an event that is associated with a table occurs e.g., insert, update or delete.
+
+CREATE TRIGGER trigger_name trigger_time trigger_event
+ ON table_name
+ FOR EACH ROW
+ BEGIN
+ ...
+ END;
+
+
+CREATE TABLE employees_audit (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    employeeNumber INT NOT NULL,
+    lastname VARCHAR(50) NOT NULL,
+    changedat DATETIME DEFAULT NULL,
+    action VARCHAR(50) DEFAULT NULL
+);
+
+DELIMITER $$
+CREATE TRIGGER before_employee_update 
+    BEFORE UPDATE ON employees
+    FOR EACH ROW 
+BEGIN
+    INSERT INTO employees_audit
+    SET action = 'update',
+     employeeNumber = OLD.employeeNumber,
+        lastname = OLD.lastname,
+        changedat = NOW(); 
+END$$
+DELIMITER ;
+
+After that, update the  employees  table to check whether the trigger is invoked.
+
+SELECT 
+    *
+FROM
+    employees_audit;
+
+View:
+
+CREATE VIEW SalePerOrder AS
+    SELECT 
+        orderNumber, SUM(quantityOrdered * priceEach) total
+    FROM
+        orderDetails
+    GROUP by orderNumber
+    ORDER BY total DESC;
+
+SELECT 
+    *
+FROM
+    salePerOrder;
+
+Creating a view based on another view
+CREATE VIEW BigSalesOrder AS
+    SELECT 
+        orderNumber, ROUND(total,2) as total
+    FROM
+        saleperorder
+    WHERE
+        total > 60000;
+
+SELECT 
+    orderNumber, total
+FROM
+    BigSalesOrder;
+
+Creating views with join:
+
+CREATE VIEW customerOrders AS
+    SELECT 
+        d.orderNumber,
+        customerName,
+        SUM(quantityOrdered * priceEach) total
+    FROM
+        orderDetails d
+            INNER JOIN
+        orders o ON o.orderNumber = d.orderNumber
+            INNER JOIN
+        customers c ON c.customerNumber = c.customerNumber
+    GROUP BY d.orderNumber
+    ORDER BY total DESC;
+
+SELECT
+    *
+FROM
+    customerOrders
+
+Creating views with subquery:
+CREATE VIEW aboveAvgProducts AS
+    SELECT 
+        productCode, productName, buyPrice
+    FROM
+        products
+    WHERE
+        buyPrice > 
+ (SELECT 
+                AVG(buyPrice)
+            FROM
+                products)
+    ORDER BY buyPrice DESC;
+
+SELECT 
+    *
+FROM
+    aboveAvgProducts;
+
+MySQL updatable views:
+to create an updatable view, the SELECT statement that defines the view must not contain any of the following elements:
+•Aggregate functions such as MIN, MAX, SUM, AVG, COUNT, etc.
+•DISTINCT
+•GROUP BY clause.
+•HAVING clause.
+•UNION or UNION ALL clause.
+•Left join or outer join.
+•Subquery in the SELECT clause or in the WHERE clause that refers to the table appeared in the FROM clause.
+•Reference to non-updatable view in the FROM clause.
+•Reference only to literal values.
+•Multiple references to any column of the base table.
+
+CREATE VIEW officeInfo
+ AS 
+   SELECT officeCode, phone, city
+   FROM offices;
+SELECT 
+    *
+FROM
+    officeInfo;
+
+UPDATE officeInfo 
+SET 
+    phone = '+33 14 723 5555'
+WHERE
+    officeCode = 4;
+
+SELECT 
+    *
+FROM
+    officeInfo
+WHERE
+    officeCode = 4;
+
+Removing rows through the view :
+
+CREATE TABLE items (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    price DECIMAL(11 , 2 ) NOT NULL
+);
+ 
+-- insert data into the items table
+INSERT INTO items(name,price) 
+VALUES('Laptop',700.56),('Desktop',699.99),('iPad',700.50) ;
+ 
+-- create a view based on items table
+CREATE VIEW LuxuryItems AS
+    SELECT 
+        *
+    FROM
+        items
+    WHERE
+        price > 700;
+-- query data from the LuxuryItems view
+SELECT 
+    *
+FROM
+    LuxuryItems;
+

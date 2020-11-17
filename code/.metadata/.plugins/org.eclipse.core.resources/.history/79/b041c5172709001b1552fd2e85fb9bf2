@@ -1,0 +1,10 @@
+package String;
+
+public class ReverseString {
+
+	String str1 = "I love java, the coffe";
+	
+	
+	
+	
+}

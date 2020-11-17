@@ -1,0 +1,19 @@
+package hQL;
+
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+
+public class HqlMain extends Exception{
+	
+	public static void main(String[] args) {
+			
+	}
+	
+	public void selectAll() throws HibernateException {
+		SessionFactory factory = new Configuration().configure().buildSessionFactory();
+	}
+	
+	
+}

@@ -1,0 +1,16 @@
+package String;
+
+public class StringLiteralVSStringNew {
+	public static void main(String[] args) {
+		String name = "Dipesh";
+		String name2 =new String("Dipesh");
+		
+		System.out.println(name == name2); //false
+		
+		String name3 = "Dipesh";
+		System.out.println(name == name3); //true
+		
+		String name4 = new String("Dipesh");
+		
+	}
+}

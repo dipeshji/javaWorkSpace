@@ -1,0 +1,39 @@
+package deepClone;
+
+class A { 
+	int a;
+	A(int a){
+		this.a = a;
+	}
+}
+
+class cloning implements Cloneable{
+	A obja = new A(10);
+	int b;
+	cloning(A obja, int b){
+		this.obja = obja;
+		this.b = b;
+		}
+		
+		protected Object clone() throws CloneNotSupportedException 
+		{
+			A obja1 = new A(obja.a);
+			cloning clonedobj = new cloning(obja1, b);
+			return clonedobj;
+		}
+}
+
+public class deepCloning {
+	public static void main(String[] args) throws CloneNotSupportedException {
+		A obja = new A(10);
+		cloning cloneobj = new cloning(obja, 10);
+		cloning clonedobj = (cloning) cloneobj.clone();
+		
+		System.out.println("cloneobj.b => " + cloneobj.b +"   " + "cloneobj.obja.a => "+cloneobj.obja.a);
+		System.out.println("clonedobj.b => " + clonedobj.b + "   "+ "clonedobj.obja.a => "+clonedobj.obja.a);
+		cloneobj.b = 100;
+		clonedobj.b=100;
+		System.out.println("cloneobj.b => " + cloneobj.b + "cloneobj.obja.a => "+cloneobj.obja.a);
+		System.out.println("clonedobj.b => " + clonedobj.b + "clonedobj.obja.a => "+clonedobj.obja.a);
+	}
+}

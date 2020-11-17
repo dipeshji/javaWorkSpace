@@ -1,0 +1,10 @@
+package OopsBasics;
+
+public class MyCircle {
+	private MyPoint center;
+	private int radius;
+	
+	MyCirclr(MyPoint center, int radius){
+		
+	}
+}

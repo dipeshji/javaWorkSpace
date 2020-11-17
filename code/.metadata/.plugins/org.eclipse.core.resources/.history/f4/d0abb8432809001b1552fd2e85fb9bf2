@@ -1,0 +1,18 @@
+package String;
+
+public class ReverseString {
+
+	public static void main(String[] args) {
+		String str1 = "I love java, the coffe";
+		String str2 = "";
+		
+		
+		String[] splitArray = str1.split(" ");
+		
+		for(int i = splitArray.length; i<=0; i-- ) {
+			str2 += splitArray[i];
+		}
+	}
+	
+	
+}

@@ -1,0 +1,93 @@
+package OopsBasics;
+
+public class Main {
+	public static void main(String[] args) {
+		Circle circleObj = new Circle();
+//		System.out.println("Private variables are not accessible outside class" + circleObj.color + circleObj.radius); C.E
+		System.out.println(circleObj);
+		System.out.println("Area: " + circleObj.getArea());
+		System.out.println(circleObj.getCurcumference());
+		
+//		============================================================
+		Rectangle recObj = new Rectangle();
+		
+		System.out.println(recObj);
+		
+//		============================================================
+		Employee empObj = new Employee(1, "Palash", "Mahlotra", 100000);
+		
+		System.out.println(empObj);
+		System.out.println(empObj.raiseSalary(20));
+		
+//		============================================================
+		InvoiceItem invoiObj = new InvoiceItem("food_1", "Food", 10, 10000);
+		
+		System.out.println(invoiObj);
+		System.out.println(invoiObj.getTotal());
+		
+//		============================================================
+		Account acObj = new Account("a/c-1", "Dipesh", 10000000);
+		Account acObj2 = new Account("a/c-2", "Sandeep", 100000000);
+		
+		System.out.println(acObj.transferTo(acObj2, 100000));
+		System.out.println(acObj2.balance);
+		
+		System.out.println(acObj2.transferTo(acObj, 2000000000));
+		System.out.println(acObj);
+		
+//		==============================================================
+		Date date = new Date(1,12,1996);
+		
+		System.out.println(date);
+		
+//		============================================================
+		Time time = new Time(1,12,11);
+		
+		System.out.println(time);
+		
+		System.out.println(time.nextSecond());
+		System.out.println(time.previousSecond());
+		
+//		============================================================
+		Author author = new Author("Dipesh", "dpatidar336@gmail.com", 'M');
+		Author author5 = new Author("Lucky", "lucky@gmail.com", 'M');
+		
+		Author[] authors = new Author[2];
+		authors[0] = author;
+		authors[1] = author5;
+		
+		Book newBook = new Book("My cool life", authors , 10000);
+		
+		System.out.println(newBook);
+		System.out.println(newBook.getAuthorNames());
+		
+//		Author author1 = new Author("Sandeep", "sandy336@gmail.com", 'M');
+//		
+//		Book newBook2 = new Book("My cool life 2", author1 , 10000);
+//		
+//		System.out.println(newBook2);
+	
+//		===============MyPoint====================================
+		
+		MyPoint point1 = new MyPoint(3,4);
+		System.out.println(point1);
+		System.out.println(point1.distance(5, 6)[0] + " " + point1.distance(5, 6)[1]);
+		System.out.println(point1.distance()[0] + " " + point1.distance()[1]);
+		
+		MyPoint point2 = new MyPoint(8,6);
+		System.out.println(point2.distance(point1)[0] + " " + point2.distance(point1)[1]);
+		System.out.println(point2.distance()[0] + " " + point2.distance()[1]);
+		
+		MyPoint[] points = new MyPoint[10];
+		
+		for(int i = 0; i<points.length; i++) {
+			points[i] = new MyPoint(i+1,i+1);
+		}
+		
+		for(MyPoint point: points) {
+			System.out.println(point.getX() + "," + point.getY());
+		}
+		
+		
+	}
+}

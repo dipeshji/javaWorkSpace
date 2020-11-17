@@ -1,0 +1,28 @@
+package Basics;
+
+import java.util.ArrayList;
+import java.util.Vector;
+
+public class Append {
+	public static void main(String args[]) {
+		Vector<Integer> vec = new Vector<>();
+		
+		vec.add(10);
+		vec.add(20);
+		vec.add(30);
+		vec.add(40);
+		vec.add(50);
+		vec.add(60);
+		vec.add(70);
+		
+		ArrayList<Integer> al = new ArrayList<>();
+		al.add(100);
+		al.add(200);
+		al.addAll(vec);
+		al.addAll(0, vec);
+		
+		System.out.println(al);
+		
+		al.remove(2);
+	}
+}

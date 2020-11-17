@@ -1,0 +1,10 @@
+package Generics;
+
+public class TestGenerics {
+	public static void main(String[] args) {
+		Basic<String> str = new Basic<>(new String());
+		Basic<Integer> intO = new Basic<>(10);
+		
+		System.out.println("Class name : " + str.getClassName());
+	}
+}

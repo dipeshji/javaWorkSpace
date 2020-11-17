@@ -1,0 +1,20 @@
+package Basics;
+import java.util.ArrayList;
+import java.util.Collections;
+
+public class SortingArrayList {
+	public static void main(String[] args) {
+		ArrayList<Integer> al = new ArrayList<>();
+		
+		al.add(10);
+		al.add(0);
+		al.add(20);
+		al.add(100);
+		al.add(80);
+		al.add(900);
+		
+		Collections.sort(al);
+		
+		System.out.println(al);
+	}
+}

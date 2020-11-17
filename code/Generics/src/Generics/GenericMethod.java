@@ -1,0 +1,7 @@
+package Generics;
+
+public class GenericMethod {
+	public<T,U> void add(T x, U y) {
+		System.out.println((x + " " + y));
+	}
+}

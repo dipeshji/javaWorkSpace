@@ -1,0 +1,10 @@
+package Sorting;
+
+import java.util.Comparator;
+
+public class SortByRollNo implements Comparator<Student> {
+	public int compare(Student stu1, Student stu2) {
+//		return stu1.rollNo - stu2.rollNo;
+		return stu1.rollNo>stu2.rollNo ? 1 : -1;
+	}
+}

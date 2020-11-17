@@ -1,0 +1,20 @@
+<hibernate-mapping>
+	<class name = "PartDTO" table = "employees">
+		<meta attrjibute = "class-attribute">
+		these class contains employees details
+		</meta>
+		
+		<id name = "employeeNumber" type = "int" column = "employeeNumber">
+			<generator class = "native" />
+		</id>
+		
+		<property name = "firstName" column = "firstName" type = "String" />
+		<propery name = "lastName" column = "lastName" type = "String" />
+		<property name = "extensiion" column = "extension" type = "String" />
+		<property name = "email" column = "email" type = "String" />
+		<property name = "officeCode" column = "officeCode" type = "String"/>
+		<property name = "reportsTo" column = "reportsTo" type = "int" />
+		<property name = "jobTitle" column = "jobTitle" type = "String" />
+		
+	</class>
+</hibernate-mapping>

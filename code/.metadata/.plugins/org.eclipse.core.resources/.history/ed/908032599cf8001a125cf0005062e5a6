@@ -1,0 +1,22 @@
+package Sorting;
+
+import java.util.ArrayList;
+import java.util.Collections;
+
+public class SortingClass {
+	public static void main(String[] args) {
+		ArrayList<Student> ar = new ArrayList<Student>();
+		
+		ar.add(new Student("Dipesh", 25, 112));
+		ar.add(new Student("Piyush", 27, 101));
+		ar.add(new Student("Akshay", 19, 150));
+		ar.add(new Student("Samar", 20, 100));
+		
+//		Collections.sort(ar,new SortByRollNo());
+		
+		System.out.println(ar);
+		
+		Collections.sort(ar, new SortByName());
+		System.out.println(ar);
+	}
+}

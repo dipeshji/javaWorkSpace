@@ -1,0 +1,17 @@
+package Basics;
+
+import java.lang.Comparable;
+
+
+public class ArrayListComparable implements Comparable<ArrayListComparable>{
+
+	private String name;
+	
+	public ArrayListComparable(String name) {
+		this.name = name;
+	}
+	
+	public int compareTo(ArrayListComparable obj1) {
+		return this.name.compareTo(obj1.name);
+	}
+}

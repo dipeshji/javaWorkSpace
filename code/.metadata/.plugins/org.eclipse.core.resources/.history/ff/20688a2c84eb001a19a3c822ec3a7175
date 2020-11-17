@@ -1,0 +1,49 @@
+package LearnSynchronization;
+
+class Table{
+	synchronized void printTable(int n) {
+		for (int i = 1; i <= 5; i++) {
+			System.out.println(i*n);
+			try {
+				Thread.sleep(400);
+			}catch(Exception e) {
+				System.out.println(e);
+			}
+		}
+	}
+}
+
+public class SynchronizedMethod extends Thread {
+	Table t;
+	public SynchronizedMethod(Table t) {
+		this.t = t;
+	}
+	
+	public void run() {
+		t.printTable(5);
+	}
+}
+
+class SynchronizedMethod1 extends Thread{
+	Table t;
+	public SynchronizedMethod1(Table t) {
+		this.t = t;
+	}
+	
+	public void run() {
+		t.printTable(10);
+	}
+}
+
+class SynchronizedMethodTest{
+	public static void main(String[] args) {
+		Table tableObj = new Table();
+		Table tableObj1 = new Table();
+		
+		SynchronizedMethod t1 = new SynchronizedMethod(tableObj);
+		SynchronizedMethod t2 = new SynchronizedMethod(tableObj);
+		
+		t1.start();
+		t2.start();
+	}
+}

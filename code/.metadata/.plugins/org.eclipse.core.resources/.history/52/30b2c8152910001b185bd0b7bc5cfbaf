@@ -1,0 +1,25 @@
+package Sorting;
+import java.util.Comparator;
+import java.util.TreeSet;
+
+public class CheckComparator implements Comparator<Integer> {
+	@Override
+	public int compare(Integer i1, Integer i2) {
+		return -1;
+	}
+}
+
+class MainClass{
+	public static void main(String[] args) {
+		TreeSet<Integer> t1 = new TreeSet<Integer>(new CheckComparator());
+		
+		t1.add(10);
+		t1.add(20);
+		t1.add(40);
+		t1.add(1);
+		t1.add(9);
+		t1.add(4);
+		
+		System.out.println(t1);
+	}
+}

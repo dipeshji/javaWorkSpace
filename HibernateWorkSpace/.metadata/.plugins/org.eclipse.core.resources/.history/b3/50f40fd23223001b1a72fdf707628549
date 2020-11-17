@@ -1,0 +1,11 @@
+package Hibernate;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+
+public class UserDTOMain {
+	public static void main(String[] args)throws HibernateException,{
+		SessionFactory sfactory = new Configuration().configure().buildSessionFactory();
+	}
+}

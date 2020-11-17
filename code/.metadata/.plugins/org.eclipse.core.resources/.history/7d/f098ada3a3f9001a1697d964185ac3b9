@@ -1,0 +1,66 @@
+package OopsBasics;
+
+public class Main {
+	public static void main(String[] args) {
+		Circle circleObj = new Circle();
+//		System.out.println("Private variables are not accessible outside class" + circleObj.color + circleObj.radius); C.E
+		System.out.println(circleObj);
+		System.out.println("Area: " + circleObj.getArea());
+		System.out.println(circleObj.getCurcumference());
+		
+//		============================================================
+		Rectangle recObj = new Rectangle();
+		
+		System.out.println(recObj);
+		
+//		============================================================
+		Employee empObj = new Employee(1, "Palash", "Mahlotra", 100000);
+		
+		System.out.println(empObj);
+		System.out.println(empObj.raiseSalary(20));
+		
+//		============================================================
+		InvoiceItem invoiObj = new InvoiceItem("food_1", "Food", 10, 10000);
+		
+		System.out.println(invoiObj);
+		System.out.println(invoiObj.getTotal());
+		
+//		============================================================
+		Account acObj = new Account("a/c-1", "Dipesh", 10000000);
+		Account acObj2 = new Account("a/c-2", "Sandeep", 100000000);
+		
+		System.out.println(acObj.transferTo(acObj2, 100000));
+		System.out.println(acObj2.balance);
+		
+		System.out.println(acObj2.transferTo(acObj, 2000000000));
+		System.out.println(acObj);
+		
+//		==============================================================
+		Date date = new Date(1,12,1996);
+		
+		System.out.println(date);
+		
+//		============================================================
+		Time time = new Time(1,12,11);
+		
+		System.out.println(time);
+		
+		System.out.println(time.nextSecond());
+		System.out.println(time.previousSecond());
+		
+//		============================================================
+		Author author = new Author("Dipesh", "dpatidar336@gmail.com", 'M');
+		
+		Book newBook = new Book("My cool life", author , 10000);
+		
+		System.out.println(newBook);
+		
+		Author author1 = new Author("Sandeep", "sandy336@gmail.com", 'M');
+		
+		Book newBook2 = new Book("My cool life 2", author , 10000);
+		
+		System.out.println(newBook2);
+		
+		
+	}
+}

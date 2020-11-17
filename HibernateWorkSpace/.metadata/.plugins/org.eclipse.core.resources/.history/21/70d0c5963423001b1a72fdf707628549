@@ -1,0 +1,17 @@
+package Hibernate;
+
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+
+public class UserDTOMain{
+	public static void main(String[] args) extends Throwable{
+		try {
+			SessionFactory factory = new Configuration().configure().buildSessionFactory();
+		} catch (HibernateException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+}
