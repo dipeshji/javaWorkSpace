@@ -30,8 +30,9 @@ public class HqlMain extends Throwable{
 //		orderBySql();
 //		orderByHql();
 //		deleteSql();
-		deleteHql();
-		
+//		deleteHql();
+//		updateSql();
+		updateHql();
 		
 	}
 	
@@ -171,7 +172,7 @@ public class HqlMain extends Throwable{
 		int res = qr.executeUpdate();
 		
 		System.out.println(res);
-		
+		session.getTransaction().commit();
 		session.close();
 	}
 //	===========================================
@@ -183,8 +184,43 @@ public class HqlMain extends Throwable{
 		Query qr = session.createQuery("delete from PartDto p where p.firstName=:name");
 		qr.setParameter("name", "Dipesh");
 		int res = qr.executeUpdate();
+		session.getTransaction().commit();
 		session.close();
 		
+	}
+	
+//	===========================================
+	public static void updateSql() {
+		Session session = startSession();
+		session.beginTransaction();
+		
+		Query qr = session.createNativeQuery("update employees set firstName=:name, jobTitle=:title where employeeNumber=:number");
+		qr.setParameter("name", "Dip");
+		qr.setParameter("title", "Boss");
+		qr.setParameter("number", 200);
+		
+		int res = qr.executeUpdate();
+		session.getTransaction().commit();
+		System.out.println(res);
+		session.close();
+	}
+	
+//	===========================================
+	
+	public static void updateHql() {
+		Session session = startSession();
+		session.beginTransaction();
+		
+		Query qr = session.createQuery("update PartDTO p set p.firstName=:name, p.jobTitle=:title where p.employeeNumber=:number");
+		
+		qr.setParameter("name", "Mohit");
+		qr.setParameter("title", "Manager");
+		qr.setParameter("number", 300);
+		
+		int res = qr.executeUpdate();
+		System.out.println(res);
+		session.getTransaction().commit();
+		session.close();
 	}
 	
 }
