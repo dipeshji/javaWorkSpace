@@ -25,6 +25,8 @@
 			true
 		</property>
 		
+		<property name="hbm2ddl.auto">update</property>
+		
 		<mapping resource = "hQL/PartDTO.hbm.xml" />
 		
 	</session-factory>

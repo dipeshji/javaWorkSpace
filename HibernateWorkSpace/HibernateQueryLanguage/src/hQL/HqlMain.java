@@ -26,7 +26,11 @@ public class HqlMain extends Throwable{
 		/*selectAllHql();
 		selectAllSql();*/
 //		getSomeColumnSql();
-		getSomeColumnHql();
+//		getSomeColumnHql();
+//		orderBySql();
+//		orderByHql();
+//		deleteSql();
+		deleteHql();
 		
 		
 	}
@@ -36,6 +40,8 @@ public class HqlMain extends Throwable{
 		Session session = factory.openSession();
 		return session;
 	}
+	
+//	===============================================
 	
 	public static void selectAllHql() {
 		Session session = startSession();
@@ -52,7 +58,8 @@ public class HqlMain extends Throwable{
 		}
 		session.close();
 	}
-	
+
+//	===============================================
 	public static void selectAllSql() {
 		Session session = startSession();
 		session.beginTransaction();
@@ -72,6 +79,8 @@ public class HqlMain extends Throwable{
 		session.close();
 	}
 	
+//	===============================================
+	
 	public static void getSomeColumnSql() {
 		Session session = startSession();
 		session.beginTransaction();
@@ -88,6 +97,8 @@ public class HqlMain extends Throwable{
 		session.close();
 	}
 	
+	
+//	===============================================	
 	public static void getSomeColumnHql() {
 		Session session = startSession();
 		session.beginTransaction();
@@ -109,6 +120,70 @@ public class HqlMain extends Throwable{
 			System.out.println(fName = " " + lName);
 			
 		}
+		session.close();
+		
+	}
+	
+//	===============================================
+	
+	public static void orderBySql() {
+		Session session = startSession();
+		session.beginTransaction();
+		
+		Query qr = session.createNativeQuery("select firstName,jobTitle from employees order by jobTitle,firstName").setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);
+		List res = qr.list();
+		for(Object obj: res) {
+			Map row = (Map) obj;
+			System.out.println(row.get("jobTitle") + " | " + row.get("firstName"));
+		}
+		
+		session.close();
+	}
+	
+//	================================================
+	
+	public static void orderByHql() {
+		Session session = startSession();
+		session.beginTransaction();
+		
+		Query qr = session.createQuery("select e.firstName, e.jobTitle from PartDTO e order by e.jobTitle, e.firstName");
+		
+		List res = qr.list();
+		Iterator itr = res.iterator();
+		
+		Object columns[];
+		
+		while(itr.hasNext()) {
+			columns = (Object[])itr.next();
+			System.out.println(columns[0] + " | "  + columns[1]);
+		}
+		session.close();
+	}
+	
+//	==================================================
+	
+	public static void deleteSql() {
+		Session session = startSession();
+		session.beginTransaction();
+		
+		Query qr = session.createNativeQuery("delete from employees where firstName=:name");
+		qr.setParameter("name", "Dipesh");
+		int res = qr.executeUpdate();
+		
+		System.out.println(res);
+		
+		session.close();
+	}
+//	===========================================
+	
+	public static void deleteHql() {
+		Session session = startSession();
+		session.beginTransaction();
+		
+		Query qr = session.createQuery("delete from PartDto p where p.firstName=:name");
+		qr.setParameter("name", "Dipesh");
+		int res = qr.executeUpdate();
+		session.close();
 		
 	}
 	
