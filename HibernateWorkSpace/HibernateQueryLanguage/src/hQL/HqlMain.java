@@ -46,7 +46,9 @@ public class HqlMain extends Throwable{
 //		selectTopCriteria();
 //		countSql();
 //		countHql();
-		countCriteria();
+//		countCriteria();
+//		andHql();
+		andCriteria();
 		
 	}
 	
@@ -460,6 +462,58 @@ public class HqlMain extends Throwable{
 		while(itr.hasNext()) {
 			columns = (Object[]) itr.next();
 			System.out.println(columns[0] + " | " + columns[1]);
+		}
+		session.close();
+		
+	}
+	
+//	=================================================
+	
+	public static void andHql() {
+		Session session = startSession();
+		session.beginTransaction();
+		
+		System.out.println("this is from andHql");
+		
+		Query q = session.createQuery("select p.firstName, p.lastName from PartDTO p where firstName=:name and employeeNumber=:number");
+		q.setParameter("name", "Dipesh");
+		q.setParameter("number", 2421);
+		
+		List res = q.list();
+		Iterator itr = res.iterator();
+		
+		Object columns[];
+		while(itr.hasNext()) {
+			columns = (Object[])itr.next();
+			System.out.println(columns[0] + " " + columns[1]);
+		}
+		session.close();
+	}
+	
+//	====================================================
+	public static void andCriteria() {
+		Session session = startSession();
+		session.beginTransaction();
+		
+		System.out.println("This is from andCriteria");
+		
+		Criteria crit = session.createCriteria(PartDTO.class);
+		ProjectionList p = Projections.projectionList();
+		
+		p.add(Projections.property("firstName"));
+		p.add(Projections.property("lastName"));
+		
+		crit.add(Restrictions.like("firstName", "Dipesh"));
+		crit.add(Restrictions.eq("employeeNumber", 2421));
+		
+		List res = crit.setProjection(p).list();
+		Iterator itr = res.iterator();
+		
+		
+		Object columns[];
+		while(itr.hasNext()) {
+			columns = (Object[])itr.next();
+			System.out.println(columns[0] + " " + columns[1]);
 		}
 		session.close();
 		
