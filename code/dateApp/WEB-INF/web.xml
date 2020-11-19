@@ -6,7 +6,7 @@
 
 	<servlet-mapping>
 		<servlet-name>Date App</servlet-name>
-		<url-pattern>date</url-pattern>
+		<url-pattern>/date</url-pattern>
 	</servlet-mapping>
 
 	<servlet>

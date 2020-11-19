@@ -9,11 +9,11 @@
     <fullyQualifiedTypeName name="java.lang.Throwable"/>
     <fullyQualifiedTypeName name="org.hibernate.Session"/>
     <fullyQualifiedTypeName name="java.util.List"/>
-    <fullyQualifiedTypeName name="java.util.Iterator"/>
     <fullyQualifiedTypeName name="org.hibernate.query.Query"/>
     <fullyQualifiedTypeName name="org.hibernate.SQLQuery"/>
     <fullyQualifiedTypeName name="hQL.PartDTO"/>
     <fullyQualifiedTypeName name="org.hibernate.query.internal.NativeQueryImpl"/>
-    <fullyQualifiedTypeName name="org.hibernate.Criteria"/>
     <fullyQualifiedTypeName name="java.util.Map"/>
+    <fullyQualifiedTypeName name="java.util.Iterator"/>
+    <fullyQualifiedTypeName name="org.hibernate.Criteria"/>
 </qualifiedTypeNameHistroy>
