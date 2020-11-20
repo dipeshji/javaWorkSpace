@@ -48,7 +48,10 @@ public class HqlMain extends Throwable{
 //		countHql();
 //		countCriteria();
 //		andHql();
-		andCriteria();
+//		andCriteria();
+//		groupBySql();
+//		groupByHql();
+		groupByCrteria();
 		
 	}
 	
@@ -411,7 +414,7 @@ public class HqlMain extends Throwable{
 		List res = q.list();
 		Iterator itr = res.iterator();
 		
-		Object columns[];
+		
 		while(itr.hasNext()) {
 			Map row = (Map) itr.next();
 			System.out.println(row.get("jobTitle") + " | " + row.get("c"));
@@ -517,6 +520,75 @@ public class HqlMain extends Throwable{
 		}
 		session.close();
 		
+	}
+	
+//	===================================
+	
+	public static void groupBySql() {
+		Session session = startSession();
+		session.beginTransaction();
+		
+		System.out.println("this is from goroupBySql");
+		
+		Query q = session.createNativeQuery("select count(employeeNumber) as employees, jobTitle from employees group by jobTitle").setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);
+		List res = q.list();
+		Iterator itr = res.iterator();
+		
+		
+		while(itr.hasNext()) {
+			Map row = (Map)itr.next();
+			System.out.println(" | " + row.get("employees") + " | " + row.get("jobTitle") + " | ");
+			System.out.println("____________________________");
+		}
+		session.close();
+	}
+	
+//	===================================
+	
+	public static void groupByHql() {
+		Session session = startSession();
+		session.beginTransaction();
+		
+		System.out.println("this is from groupByHql");
+		
+		Query q = session.createQuery("select count(employeeNumber), jobTitle from PartDTO group by jobTitle");
+		
+		List res = q.list();
+		Iterator itr = res.iterator();
+		
+		Object columns[];
+		
+		while(itr.hasNext()) {
+			columns = (Object[]) itr.next();
+			System.out.println(" | " + columns[0] + " | " + columns[1] + " | ");
+			System.out.println("____________________________");
+		}
+		session.close();
+	}
+//	=================================================
+	public static void groupByCrteria() {
+		Session session = startSession();
+		session.beginTransaction();
+		
+		System.out.println("this is from groupByCriteria");
+		
+		Criteria crit = session.createCriteria(PartDTO.class);
+		
+		ProjectionList p = Projections.projectionList();
+		p.add(Projections.count("employeeNumber"));
+		p.add(Projections.property("jobTitle"));
+		p.add(Projections.groupProperty("jobTitle"));
+		
+		List res = crit.setProjection(p).list();
+		Iterator itr = res.iterator();
+		
+		Object columns[];
+		while(itr.hasNext()) {
+			columns = (Object[]) itr.next();
+			System.out.println(" | " + columns[0] + " | " + columns[1] + " | ");
+			System.out.println("____________________________");
+		}
+		session.close();
 	}
 	
 }
