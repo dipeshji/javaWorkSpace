@@ -2,22 +2,29 @@
 <qualifiedTypeNameHistroy>
     <fullyQualifiedTypeName name="javax.transaction.Transaction"/>
     <fullyQualifiedTypeName name="Hibernate.UserDTO"/>
-    <fullyQualifiedTypeName name="org.hibernate.SessionFactory"/>
-    <fullyQualifiedTypeName name="org.hibernate.cfg.Configuration"/>
     <fullyQualifiedTypeName name="java.lang.Exception"/>
     <fullyQualifiedTypeName name="org.hibernate.HibernateException"/>
     <fullyQualifiedTypeName name="java.lang.Throwable"/>
-    <fullyQualifiedTypeName name="org.hibernate.Session"/>
-    <fullyQualifiedTypeName name="java.util.List"/>
-    <fullyQualifiedTypeName name="org.hibernate.query.Query"/>
     <fullyQualifiedTypeName name="org.hibernate.SQLQuery"/>
     <fullyQualifiedTypeName name="hQL.PartDTO"/>
     <fullyQualifiedTypeName name="org.hibernate.query.internal.NativeQueryImpl"/>
     <fullyQualifiedTypeName name="java.util.Map"/>
-    <fullyQualifiedTypeName name="java.util.Iterator"/>
-    <fullyQualifiedTypeName name="org.hibernate.Criteria"/>
     <fullyQualifiedTypeName name="org.hibernate.criterion.Order"/>
-    <fullyQualifiedTypeName name="org.hibernate.criterion.Restrictions"/>
     <fullyQualifiedTypeName name="org.hibernate.criterion.ProjectionList"/>
+    <fullyQualifiedTypeName name="org.hibernate.Criteria"/>
+    <fullyQualifiedTypeName name="com.mysql.jdbc.ResultSet"/>
+    <fullyQualifiedTypeName name="com.sun.xml.bind.v2.runtime.property.Property"/>
+    <fullyQualifiedTypeName name="org.hibernate.criterion.Restrictions"/>
     <fullyQualifiedTypeName name="org.hibernate.criterion.Projections"/>
+    <fullyQualifiedTypeName name="org.hibernate.Transaction"/>
+    <fullyQualifiedTypeName name="org.hibernate.context.internal.ThreadLocalSessionContext"/>
+    <fullyQualifiedTypeName name="org.hibernate.TypeHelper"/>
+    <fullyQualifiedTypeName name="java.lang.Thread"/>
+    <fullyQualifiedTypeName name="org.hibernate.SessionFactory"/>
+    <fullyQualifiedTypeName name="org.hibernate.cfg.Configuration"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="java.util.Iterator"/>
+    <fullyQualifiedTypeName name="org.hibernate.Session"/>
+    <fullyQualifiedTypeName name="org.hibernate.Session.LockRequest"/>
+    <fullyQualifiedTypeName name="org.hibernate.query.Query"/>
 </qualifiedTypeNameHistroy>

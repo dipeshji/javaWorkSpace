@@ -10,14 +10,18 @@ import org.hibernate.criterion.ProjectionList;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.query.Query;
+
+import com.sun.xml.bind.v2.runtime.property.Property;
+
 import java.util.List;
 import java.util.Map;
 import java.util.Iterator;
 
-public class HqlMain extends Throwable{
-	
-	public HqlMain(){}
-	
+public class HqlMain extends Throwable {
+
+	public HqlMain() {
+	}
+
 	/**
 	 * 
 	 */
@@ -25,10 +29,10 @@ public class HqlMain extends Throwable{
 
 	public static void main(String[] args) {
 		System.out.println("main started");
-		
-		/*selectAllHql();
-		selectAllSql();
-		selectAllCriteria();*/
+
+//		selectAllHql();
+//		selectAllSql();
+//		selectAllCriteria();
 //		getSomeColumnSql();
 //		getSomeColumnHql();
 //		getSomeColumnCriteria();
@@ -49,30 +53,40 @@ public class HqlMain extends Throwable{
 //		countCriteria();
 //		andHql();
 //		andCriteria();
+//		orHql();
+//		orCriteria();
 //		groupBySql();
 //		groupByHql();
-		groupByCrteria();
-		
+//		groupByCrteria();
+//		minHql();
+//		minCriteria();
+//		avgHql();
+//		avgCriteria();
+//		sumHql();
+//		sumCriteria();
+//		distinctHql();
+		distinctCriteria();
+
 	}
-	
+
 	public static Session startSession() throws HibernateException {
 		SessionFactory factory = new Configuration().configure().buildSessionFactory();
 		Session session = factory.openSession();
 		return session;
 	}
-	
+
 //	===============================================
-	
+
 	public static void selectAllHql() {
 		Session session = startSession();
 		session.beginTransaction();
 		Query<PartDTO> q = session.createQuery("from PartDTO");
-		
+
 		List<PartDTO> data = q.list();
 		Iterator<PartDTO> itr = data.iterator();
-		
+
 		PartDTO emp;
-		while(itr.hasNext()) {
+		while (itr.hasNext()) {
 			emp = itr.next();
 			System.out.println(emp.getFirstName());
 		}
@@ -84,93 +98,91 @@ public class HqlMain extends Throwable{
 		Session session = startSession();
 		session.beginTransaction();
 		Query<PartDTO> query = session.createNativeQuery("select * from employees").addEntity(PartDTO.class);
-		
+
 		List<PartDTO> res = query.list();
 		Iterator<PartDTO> itr = res.iterator();
-		
-		
+
 		System.out.println("sql native query output");
 		PartDTO emp;
-		while(itr.hasNext()) {
+		while (itr.hasNext()) {
 			emp = itr.next();
 			System.out.println(emp.getFirstName());
-					
+
 		}
 		session.close();
 	}
-	
+
 //	==================================================
-	
+
 	public static void selectAllCriteria() {
 		Session session = startSession();
 		session.beginTransaction();
-		
+
 		Criteria crit = session.createCriteria(PartDTO.class);
 		List res = crit.list();
 		Iterator itr = res.iterator();
-		
+
 		PartDTO emp;
-		while(itr.hasNext()) {
+		while (itr.hasNext()) {
 			emp = (PartDTO) itr.next();
 			System.out.println(emp.getFirstName() + " " + emp.getLastName());
 		}
-		
+
 		session.close();
 	}
-	
+
 //	===============================================
-	
+
 	public static void getSomeColumnSql() {
 		Session session = startSession();
 		session.beginTransaction();
-		
-		Query qu = session.createNativeQuery("select firstName, lastName from employees").setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);
+
+		Query qu = session.createNativeQuery("select firstName, lastName from employees")
+				.setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);
 		List res = qu.list();
-		
-		
-		for(Object obj: res) {
+
+		for (Object obj : res) {
 			Map row = (Map) obj;
 			System.out.println(row.get("firstName") + " " + row.get("lastName"));
 		}
-		
+
 		session.close();
 	}
-	
+
 //	==================================================
-	
+
 	public static void someColumnHql() {
 		Session session = startSession();
 		session.beginTransaction();
-		
+
 		Query qr = session.createQuery("select e.firstName, e.lastName from PartDTO e");
-		
+
 		List res = qr.list();
 		Iterator itr = res.iterator();
-		
+
 		Object columns[];
-		
-		
-		while(itr.hasNext()) {
-			columns = (Object[])itr.next();
-			
-			String fName = (String)columns[0];
-			String lName  = (String)columns[1];
-			
+
+		while (itr.hasNext()) {
+			columns = (Object[]) itr.next();
+
+			String fName = (String) columns[0];
+			String lName = (String) columns[1];
+
 			System.out.println(fName = " " + lName);
-			
+
 		}
 		session.close();
-		
+
 	}
-	
+
 //	===============================================
-	
+
 	public static void getSomeColumnCriteria() {
 		Session session = startSession();
 		session.beginTransaction();
-		
+
 		System.out.println("output from getSomeColumnCriteria");
-		
+
 		Criteria crit = session.createCriteria(PartDTO.class);
 		ProjectionList p = Projections.projectionList();
 		p.add(Projections.property("firstName"));
@@ -178,417 +190,588 @@ public class HqlMain extends Throwable{
 		crit.setProjection(p);
 		List res = crit.list();
 		Iterator itr = res.iterator();
-		
+
 		Object columns[];
-		while(itr.hasNext()) {
-			columns = (Object[])itr.next();
+		while (itr.hasNext()) {
+			columns = (Object[]) itr.next();
 			System.out.println(columns[0] + " " + columns[1]);
 		}
 		session.close();
-		
+
 	}
-	
+
 //	===============================================
-	
+
 	public static void orderBySql() {
 		Session session = startSession();
 		session.beginTransaction();
-		
-		Query qr = session.createNativeQuery("select firstName,jobTitle from employees order by jobTitle,firstName").setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);
+
+		Query qr = session.createNativeQuery("select firstName,jobTitle from employees order by jobTitle,firstName")
+				.setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);
 		List res = qr.list();
-		for(Object obj: res) {
+		for (Object obj : res) {
 			Map row = (Map) obj;
 			System.out.println(row.get("jobTitle") + " | " + row.get("firstName"));
 		}
-		
+
 		session.close();
 	}
-	
+
 //	================================================
-	
+
 	public static void orderByHql() {
 		Session session = startSession();
 		session.beginTransaction();
-		
-		Query qr = session.createQuery("select e.firstName, e.jobTitle from PartDTO e order by e.jobTitle, e.firstName");
-		
+
+		Query qr = session
+				.createQuery("select e.firstName, e.jobTitle from PartDTO e order by e.jobTitle, e.firstName");
+
 		List res = qr.list();
 		Iterator itr = res.iterator();
-		
+
 		Object columns[];
-		
-		while(itr.hasNext()) {
-			columns = (Object[])itr.next();
-			System.out.println(columns[0] + " | "  + columns[1]);
+
+		while (itr.hasNext()) {
+			columns = (Object[]) itr.next();
+			System.out.println(columns[0] + " | " + columns[1]);
 		}
 		session.close();
 	}
-	
+
 //	==================================================
-	
+
 	public static void OrderByCriteria() {
 		Session session = startSession();
 		session.beginTransaction();
-		
+
 		System.out.println("output from OrderByCriteria");
-		
+
 		Criteria crit = session.createCriteria(PartDTO.class);
 		ProjectionList p = Projections.projectionList();
 		p.add(Projections.property("firstName"));
 		p.add(Projections.property("jobTitle"));
 		crit.addOrder(Order.asc("jobTitle"));
 		crit.addOrder(Order.asc("firstName"));
-		
+
 		List res = crit.setProjection(p).list();
 		Iterator itr = res.iterator();
 		Object columns[];
-		while(itr.hasNext()) {
-			columns = (Object[])itr.next();
+		while (itr.hasNext()) {
+			columns = (Object[]) itr.next();
 			System.out.println(columns[0] + " | " + columns[1]);
 		}
-		
+
 		session.close();
-		
+
 	}
-	
+
 //	==================================================
-	
+
 	public static void deleteSql() {
 		Session session = startSession();
 		session.beginTransaction();
-		
+
 		Query qr = session.createNativeQuery("delete from employees where firstName=:name");
 		qr.setParameter("name", "Dipesh");
 		int res = qr.executeUpdate();
-		
+
 		System.out.println(res);
 		session.getTransaction().commit();
 		session.close();
 	}
 //	===========================================
-	
+
 	public static void deleteHql() {
 		Session session = startSession();
 		session.beginTransaction();
-		
+
 		Query qr = session.createQuery("delete from PartDto p where p.firstName=:name");
 		qr.setParameter("name", "Dipesh");
 		int res = qr.executeUpdate();
 		session.getTransaction().commit();
 		session.close();
-		
+
 	}
-	
+
 //	===========================================
-	
+
 	public static void deleteCriteria(int employeeId) {
 		Session session = startSession();
 		session.beginTransaction();
-		
-		PartDTO emp = (PartDTO)session.createCriteria(PartDTO.class).add(Restrictions.eq("employeeNumber",employeeId)).uniqueResult();
-		
+
+		PartDTO emp = (PartDTO) session.createCriteria(PartDTO.class).add(Restrictions.eq("employeeNumber", employeeId))
+				.uniqueResult();
+
 		session.delete(emp);
 		session.getTransaction().commit();
-		
+
 		System.out.println("employee " + emp.getFirstName() + " with id " + emp.getEmployeeNumber() + " is deleted");
-		
+
 		session.close();
-		
+
 	}
-	
+
 //	===========================================
 	public static void updateSql() {
 		Session session = startSession();
 		session.beginTransaction();
-		
-		Query qr = session.createNativeQuery("update employees set firstName=:name, jobTitle=:title where employeeNumber=:number");
+
+		Query qr = session.createNativeQuery(
+				"update employees set firstName=:name, jobTitle=:title where employeeNumber=:number");
 		qr.setParameter("name", "Dip");
 		qr.setParameter("title", "Boss");
 		qr.setParameter("number", 200);
-		
+
 		int res = qr.executeUpdate();
 		session.getTransaction().commit();
 		System.out.println(res);
 		session.close();
 	}
-	
+
 //	===========================================
-	
+
 	public static void updateHql() {
 		Session session = startSession();
 		session.beginTransaction();
-		
-		Query qr = session.createQuery("update PartDTO p set p.firstName=:name, p.jobTitle=:title where p.employeeNumber=:number");
-		
+
+		Query qr = session.createQuery(
+				"update PartDTO p set p.firstName=:name, p.jobTitle=:title where p.employeeNumber=:number");
+
 		qr.setParameter("name", "Mohit");
 		qr.setParameter("title", "Manager");
 		qr.setParameter("number", 300);
-		
+
 		int res = qr.executeUpdate();
 		System.out.println(res);
 		session.getTransaction().commit();
 		session.close();
 	}
-	
+
 //	===========================================
-	
+
 	public static void updateCriteria(int employeeId) {
 		Session session = startSession();
 		session.beginTransaction();
-		
-		PartDTO emp = (PartDTO)session.createCriteria(PartDTO.class).add(Restrictions.eq("employeeNumber", employeeId)).uniqueResult();
+
+		PartDTO emp = (PartDTO) session.createCriteria(PartDTO.class).add(Restrictions.eq("employeeNumber", employeeId))
+				.uniqueResult();
 		emp.setJobTitle("Exc Manager");
-		
+
 		session.update(emp);
 		session.getTransaction().commit();
 		session.close();
-		System.out.println("employee " + emp.getFirstName() + " with id " + emp.getEmployeeNumber() + " has been updated");
+		System.out.println(
+				"employee " + emp.getFirstName() + " with id " + emp.getEmployeeNumber() + " has been updated");
 	}
-	
+
 //	===========================================
 	public static void selectTopSql() {
 		Session session = startSession();
 		session.beginTransaction();
-		
-		Query qr = session.createNativeQuery("select firstName from employees limit 10").setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);
+
+		Query qr = session.createNativeQuery("select firstName from employees limit 10")
+				.setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);
 		List res = qr.list();
-		
-		for(Object obj: res) {
+
+		for (Object obj : res) {
 			Map row = (Map) obj;
 			System.out.println(row.get("firstName"));
 		}
 		session.close();
 	}
-	
+
 //	===========================================
 	public static void selectTopHql() {
 		Session session = startSession();
 		session.beginTransaction();
-		
-		List res = session.createQuery("select firstName from PartDTO").setFirstResult(1).setMaxResults(10).getResultList();
+
+		List res = session.createQuery("select firstName from PartDTO").setFirstResult(1).setMaxResults(10)
+				.getResultList();
 		Iterator itr = res.iterator();
-		
-				
-		while(itr.hasNext()) {
+
+		while (itr.hasNext()) {
 			System.out.println(itr.next());
 		}
 		session.close();
 	}
-	
+
 //	============================================
-	
+
 	public static void selectTopCriteria() {
 		Session session = startSession();
 		session.beginTransaction();
-		
+
 		System.out.println("You are viewing output from selectTopCriteria");
 		Criteria crit = session.createCriteria(PartDTO.class);
-		
+
 		List res = crit.setFirstResult(5).setMaxResults(10).list();
-		
+
 		Iterator itr = res.iterator();
-		
+
 		PartDTO emp;
 		int i = 1;
-		while(itr.hasNext()) {
-			emp = (PartDTO)itr.next();
+		while (itr.hasNext()) {
+			emp = (PartDTO) itr.next();
 			System.out.println(i + ") " + emp.getFirstName() + " " + emp.getLastName());
 			i++;
 		}
-		
+
 		session.close();
 	}
-	
+
 //	==========================================
-	
+
 	public static void countSql() {
 		Session session = startSession();
 		session.beginTransaction();
-		
+
 		System.out.println("you are viewing output from countSql");
-		
-		Query q = session.createNativeQuery("select jobTitle, count(*) as c from employees group by jobTitle").setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);
-		
+
+		Query q = session.createNativeQuery("select jobTitle, count(*) as c from employees group by jobTitle")
+				.setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);
+
 //		System.out.println(q.getSingleResult());
-		
+
 		List res = q.list();
 		Iterator itr = res.iterator();
-		
-		
-		while(itr.hasNext()) {
+
+		while (itr.hasNext()) {
 			Map row = (Map) itr.next();
 			System.out.println(row.get("jobTitle") + " | " + row.get("c"));
 		}
-		
+
 		session.close();
 	}
-	
+
 //	============================================
-	
+
 	public static void countHql() {
 		Session session = startSession();
 		session.beginTransaction();
-		
+
 		System.out.println("this is from countHql");
-		
+
 		List res = session.createQuery("select lastName, count(*) as c from PartDTO group by lastname").list();
-		
+
 		Iterator itr = res.iterator();
 		Object columns[];
-		while(itr.hasNext()) {
+		while (itr.hasNext()) {
 			columns = (Object[]) itr.next();
 			System.out.println(columns[0] + " | " + columns[1]);
 		}
-		
+
 		session.close();
-		
+
 	}
-	
+
 //	============================================
 	public static void countCriteria() {
 		Session session = startSession();
 		session.beginTransaction();
-		
+
 		System.out.println("this is from countCriteria");
-		
+
 		Criteria crit = session.createCriteria(PartDTO.class);
 		ProjectionList p = Projections.projectionList();
-		
+
 		p.add(Projections.property("reportsTo"));
 		p.add(Projections.count("reportsTo"));
 		p.add(Projections.groupProperty("reportsTo"));
-		
+
 		List res = crit.setProjection(p).list();
 		Iterator itr = res.iterator();
 		Object columns[];
-		
-		while(itr.hasNext()) {
+
+		while (itr.hasNext()) {
 			columns = (Object[]) itr.next();
 			System.out.println(columns[0] + " | " + columns[1]);
 		}
 		session.close();
-		
+
 	}
-	
+
 //	=================================================
-	
+
 	public static void andHql() {
 		Session session = startSession();
 		session.beginTransaction();
-		
+
 		System.out.println("this is from andHql");
-		
-		Query q = session.createQuery("select p.firstName, p.lastName from PartDTO p where firstName=:name and employeeNumber=:number");
+
+		Query q = session.createQuery(
+				"select p.firstName, p.lastName from PartDTO p where firstName=:name and employeeNumber=:number");
 		q.setParameter("name", "Dipesh");
 		q.setParameter("number", 2421);
-		
+
 		List res = q.list();
 		Iterator itr = res.iterator();
-		
+
 		Object columns[];
-		while(itr.hasNext()) {
-			columns = (Object[])itr.next();
+		while (itr.hasNext()) {
+			columns = (Object[]) itr.next();
 			System.out.println(columns[0] + " " + columns[1]);
 		}
 		session.close();
 	}
-	
+
 //	====================================================
 	public static void andCriteria() {
 		Session session = startSession();
 		session.beginTransaction();
-		
+
 		System.out.println("This is from andCriteria");
-		
+
 		Criteria crit = session.createCriteria(PartDTO.class);
 		ProjectionList p = Projections.projectionList();
-		
+
 		p.add(Projections.property("firstName"));
 		p.add(Projections.property("lastName"));
-		
+
 		crit.add(Restrictions.like("firstName", "Dipesh"));
 		crit.add(Restrictions.eq("employeeNumber", 2421));
-		
+
 		List res = crit.setProjection(p).list();
 		Iterator itr = res.iterator();
-		
-		
+
 		Object columns[];
-		while(itr.hasNext()) {
-			columns = (Object[])itr.next();
+		while (itr.hasNext()) {
+			columns = (Object[]) itr.next();
 			System.out.println(columns[0] + " " + columns[1]);
 		}
 		session.close();
-		
+
 	}
-	
+
+//	======================================================
+	public static void orHql() {
+		Session session = startSession();
+		session.beginTransaction();
+
+		System.out.println("this is from orHql");
+
+		Query q = session
+				.createQuery("select p.firstName, p.lastName from PartDTO p where firstName=:name or lastname=:lname");
+		q.setParameter("name", "Dipesh");
+		q.setParameter("lname", "Patidar");
+
+		List res = q.list();
+		Iterator itr = res.iterator();
+
+		Object columns[];
+		while (itr.hasNext()) {
+			columns = (Object[]) itr.next();
+			System.out.println(columns[0] + " " + columns[1]);
+		}
+		session.close();
+	}
+
 //	===================================
-	
+	public static void orCriteria() {
+		Session session = startSession();
+		session.beginTransaction();
+
+		System.out.println("This is from orCriteria");
+
+		Criteria crit = session.createCriteria(PartDTO.class);
+		ProjectionList p = Projections.projectionList();
+
+		p.add(Projections.property("firstName"));
+		p.add(Projections.property("lastName"));
+
+		crit.add(Restrictions.or(Restrictions.eq("firstName", "Dipesh"), Restrictions.like("lastName", "Patidar")));
+
+		List res = crit.setProjection(p).list();
+		Iterator itr = res.iterator();
+
+		Object columns[];
+		while (itr.hasNext()) {
+			columns = (Object[]) itr.next();
+			System.out.println(columns[0] + " " + columns[1]);
+		}
+		session.close();
+
+	}
+
+//	===================================
+
 	public static void groupBySql() {
 		Session session = startSession();
 		session.beginTransaction();
-		
+
 		System.out.println("this is from goroupBySql");
-		
-		Query q = session.createNativeQuery("select count(employeeNumber) as employees, jobTitle from employees group by jobTitle").setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);
+
+		Query q = session
+				.createNativeQuery(
+						"select count(employeeNumber) as employees, jobTitle from employees group by jobTitle")
+				.setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);
 		List res = q.list();
 		Iterator itr = res.iterator();
-		
-		
-		while(itr.hasNext()) {
-			Map row = (Map)itr.next();
+
+		while (itr.hasNext()) {
+			Map row = (Map) itr.next();
 			System.out.println(" | " + row.get("employees") + " | " + row.get("jobTitle") + " | ");
 			System.out.println("____________________________");
 		}
 		session.close();
 	}
-	
+
 //	===================================
-	
+
 	public static void groupByHql() {
 		Session session = startSession();
 		session.beginTransaction();
-		
+
 		System.out.println("this is from groupByHql");
-		
+
 		Query q = session.createQuery("select count(employeeNumber), jobTitle from PartDTO group by jobTitle");
-		
+
 		List res = q.list();
 		Iterator itr = res.iterator();
-		
+
 		Object columns[];
-		
-		while(itr.hasNext()) {
+
+		while (itr.hasNext()) {
 			columns = (Object[]) itr.next();
 			System.out.println(" | " + columns[0] + " | " + columns[1] + " | ");
 			System.out.println("____________________________");
 		}
 		session.close();
 	}
+
 //	=================================================
 	public static void groupByCrteria() {
 		Session session = startSession();
 		session.beginTransaction();
-		
+
 		System.out.println("this is from groupByCriteria");
-		
+
 		Criteria crit = session.createCriteria(PartDTO.class);
-		
+
 		ProjectionList p = Projections.projectionList();
 		p.add(Projections.count("employeeNumber"));
 		p.add(Projections.property("jobTitle"));
 		p.add(Projections.groupProperty("jobTitle"));
-		
+
 		List res = crit.setProjection(p).list();
 		Iterator itr = res.iterator();
-		
+
 		Object columns[];
-		while(itr.hasNext()) {
+		while (itr.hasNext()) {
 			columns = (Object[]) itr.next();
 			System.out.println(" | " + columns[0] + " | " + columns[1] + " | ");
 			System.out.println("____________________________");
 		}
 		session.close();
 	}
-	
+
+//	=============================================
+	public static void minHql() {
+		Session session = startSession();
+		session.beginTransaction();
+
+		System.out.println("this is from minHql");
+		Query q = session.createQuery("select min(employeeNumber) from PartDTO");
+
+		System.out.println(q.getSingleResult());
+		session.close();
+	}
+
+//	======================================
+	public static void minCriteria() {
+		Session session = startSession();
+		session.beginTransaction();
+		System.out.println("this is from minCriteria");
+		Criteria crit = session.createCriteria(PartDTO.class);
+		ProjectionList p = Projections.projectionList();
+		p.add(Projections.max("employeeNumber"));
+		List res = crit.setProjection(p).list();
+		System.out.println(res.get(0));
+		session.close();
+	}
+
+//	===============================================
+	public static void avgHql() {
+		Session session = startSession();
+		session.beginTransaction();
+		System.out.println("this is from avgHql");
+
+		Query q = session.createQuery("select avg(reportsTo) from PartDTO");
+		System.out.println(q.getSingleResult());
+		session.close();
+	}
+
+//	============================================
+	public static void avgCriteria() {
+		Session session = startSession();
+		session.beginTransaction();
+		System.out.println("this is from avgCriteria");
+
+		Criteria crit = session.createCriteria(PartDTO.class);
+		ProjectionList p = Projections.projectionList();
+		p.add(Projections.avg("reportsTo"));
+		List res = crit.setProjection(p).list();
+		System.out.println(res.get(0));
+		session.close();
+	}
+
+//	=========================================
+	public static void sumHql() {
+		Session session = startSession();
+		session.beginTransaction();
+		System.out.println("this is from sumHql");
+
+		Query q = session.createQuery("select sum(reportsTo) from PartDTO");
+		System.out.println(q.getSingleResult());
+		session.close();
+	}
+
+//	========================================
+	public static void sumCriteria() {
+		Session session = startSession();
+		session.beginTransaction();
+		System.out.println("this is from sumCriteria");
+
+		Criteria crit = session.createCriteria(PartDTO.class);
+		ProjectionList p = Projections.projectionList();
+		p.add(Projections.sum("reportsTo"));
+		List res = crit.setProjection(p).list();
+		System.out.println(res.get(0));
+		session.close();
+	}
+
+//	=========================================
+	public static void distinctHql() {
+		Session session = startSession();
+		session.beginTransaction();
+		System.out.println("this is from distinctHql");
+
+		Query q = session.createQuery("select distinct(lastName) from PartDTO");
+		List res = q.list();
+		Iterator itr = res.iterator();
+		while (itr.hasNext()) {
+			System.out.println(itr.next());
+		}
+		session.clear();
+	}
+
+//	============================================
+	public static void distinctCriteria() {
+		Session session = startSession();
+		session.beginTransaction();
+		System.out.println("this is from distinctCriteria");
+
+		Criteria crit = session.createCriteria(PartDTO.class);
+
+		ProjectionList p = Projections.projectionList();
+
+		p.add(Projections.distinct(Projections.property("lastName")));
+
+		List res = crit.setProjection(p).list();
+		Iterator itr = res.iterator();
+
+		while (itr.hasNext()) {
+			System.out.println(itr.next());
+		}
+
+	}
 }

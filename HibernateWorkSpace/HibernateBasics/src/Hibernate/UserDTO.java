@@ -1,14 +1,15 @@
 package Hibernate;
 
 public class UserDTO {
-	private int id = 0;
-	private String userId = null;
-	private String password = null;
-	private String firstName = null;
-	private String lastName = null;
-	private String address = null;
-	
-	UserDTO(){}
+	private int id;
+	private String userId;
+	private String password;
+	private String firstName;
+	private String lastName;
+	private String address;
+
+	UserDTO() {
+	}
 
 	public int getId() {
 		return id;
@@ -57,6 +58,5 @@ public class UserDTO {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	
-	
+
 }
