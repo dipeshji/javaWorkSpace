@@ -12,6 +12,7 @@ public class QueryCache {
 	public static void main(String[] args) {
 		SessionFactory factory = new Configuration().configure().buildSessionFactory();
 		Session seesion = factory.openSession();
+		seesion.beginTransaction();
 		
 		Query q = seesion.createQuery("from Employee");
 		q.setCacheable(true);
@@ -30,7 +31,10 @@ public class QueryCache {
 //		============= session-2 ========================
 		System.out.println("================= session-2 started =======================");
 		Session session2 = factory.openSession();
+		session2.beginTransaction();
+		
 		Query q2 = session2.createQuery("from Employee");
+		q2.setCacheable(true);
 		
 		List res2 = q2.list();
 		Iterator itr2 = res2.iterator();

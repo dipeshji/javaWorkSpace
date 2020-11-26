@@ -27,10 +27,12 @@ public class SecondLevelCache {
 		session1.update(emp1);//update 
 		session1.getTransaction().commit();
 		
-		Employee emp2 = (Employee) session1.load(Employee.class, 2421); //data loaded from second level cache also known as global cache
-		System.out.println(emp2.getFirstName() + " " + emp2.getLastName());
+//		Employee emp2 = (Employee) session1.load(Employee.class, 2421); //data loaded from second level cache also known as global cache
+//		System.out.println(emp2.getFirstName() + " " + emp2.getLastName());
 		
 		session1.close();
+		
+		Thread.sleep(1000);
 		
 //		============== case 2 ===================================
 		
@@ -38,14 +40,14 @@ public class SecondLevelCache {
 		session2.beginTransaction();
 		
 		System.out.println("Session-2 started");
-//		
+		
 		Employee emp3 = (Employee) session2.load(Employee.class, 2421); 
 		System.out.println(emp3.getFirstName() + " " + emp3.getLastName());
 		
-		Thread.sleep(10000); //update database from terminal while sleeping  
-	
-		Employee emp4 = (Employee) session2.load(Employee.class, 2421); //data is loaded from cache
-		System.out.println(emp4.getFirstName() + " " + emp4.getLastName());
+//		Thread.sleep(10000); //update database from terminal while sleeping  
+//	
+//		Employee emp4 = (Employee) session2.load(Employee.class, 2421); //data is loaded from cache
+//		System.out.println(emp4.getFirstName() + " " + emp4.getLastName());
 		session2.close();
 		
 	}
