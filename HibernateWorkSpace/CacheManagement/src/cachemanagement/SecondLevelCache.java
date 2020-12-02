@@ -20,17 +20,17 @@ public class SecondLevelCache {
 		
 		
 //		
-//		session1.close();
-//		Thread.sleep(10000);
+		session1.close();
+		Thread.sleep(10000);
 //		
-		emp1.setFirstName("Ankit");
-		session1.update(emp1);//update 
-		session1.getTransaction().commit();
+//		emp1.setFirstName("Ankit");
+//		session1.update(emp1);//update 
+//		session1.getTransaction().commit();
 		
 //		Employee emp2 = (Employee) session1.load(Employee.class, 2421); //data loaded from second level cache also known as global cache
 //		System.out.println(emp2.getFirstName() + " " + emp2.getLastName());
 		
-		session1.close();
+//		session1.close();
 		
 		Thread.sleep(1000);
 		

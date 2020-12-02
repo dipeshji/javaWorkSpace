@@ -9,7 +9,9 @@
 		<meta attribute="class-attribute">
 			these class contains employees details
 		</meta>
+		
 		<cache usage="read-write" />
+		
 		<id name="employeeNumber" type="int" column="employeeNumber">
 			<generator class="increment" />
 		</id>

@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.relationships.Customer" table="customers">
+		<meta attribute="class-attribute">
+			these class contains customers details.
+		</meta>
+
+		<id name="Cid" type="int" column="cid" />
+
+		<property name="Cname" column="cname" type="string" />
+		<property name="vendorId" column="vendor_id" insert="false" />
+	</class>
+</hibernate-mapping>
