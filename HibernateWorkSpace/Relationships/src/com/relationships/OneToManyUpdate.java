@@ -2,12 +2,14 @@ package com.relationships;
 
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.query.Query;
 
 public class OneToManyUpdate {
 	public static void main(String[] args) {
@@ -17,23 +19,21 @@ public class OneToManyUpdate {
 		Transaction tx = session.getTransaction();
 		tx.begin();
 		
-		Object obj = session.get(Vendor.class,101);
-		Vendor parent = (Vendor) obj;
+		Vendor parent = new Vendor();
+		parent.setVid(102);
+		parent.setVname("idea");
 		
-		parent.setVid(104);	
-		Set children = parent.getChildren();
-		Set updatedChildren = new HashSet();
-		Iterator itr = children.iterator();
+		Object obj = session.get(Customer.class, 202);
+		Customer cus = (Customer) obj;
+		cus.setVendorId(102);
 		
-		Customer cus;
-		while(itr.hasNext()) {
-			cus = (Customer) itr.next();
-			cus.setVendorId(104);
-			updatedChildren.add(cus);
-		}
+		Set<Customer> child = new HashSet<Customer>();
+		child.add(cus);
 		
-		parent.setChildren(updatedChildren);
-		session.update(parent);
+		parent.setChildren(child);
+		
+		session.save(parent);
+		
 		tx.commit();
 		session.close();
 		
