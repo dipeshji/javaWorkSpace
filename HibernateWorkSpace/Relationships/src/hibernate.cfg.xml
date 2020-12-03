@@ -22,7 +22,7 @@
 			1234
 		</property>
 
-		<property name="hbm2ddl.auto">update</property>
+		<!-- <property name="hbm2ddl.auto">create</property> -->
 
 		<property name="dialect">
 			org.hibernate.dialect.MySQL5Dialect
@@ -32,10 +32,14 @@
 			true
 		</property>
 
-		<mapping resource="com/relationships/Customer.hbm.xml" />
-		<mapping resource="com/relationships/Vendor.hbm.xml" />
-		<mapping resource="com/studentproject/Student.hbm.xml" />
-		<mapping resource="com/studentproject/Project.hbm.xml" />
+		<!-- <mapping resource="com/relationships/Customer.hbm.xml" /> <mapping 
+			resource="com/relationships/Vendor.hbm.xml" /> -->
+
+		<!-- <mapping resource="com/principleteacherupdate/Teacher.hbm.xml" />
+		<mapping resource="com/principleteacherupdate/Principle" /> -->
+		
+		<mapping resource="com/parentchild/Children.hbm.xml" />
+		<mapping resource="com/parentchild/Parent.hbm.xml" />
 
 	</session-factory>
 </hibernate-configuration>

@@ -16,31 +16,31 @@ public class ManyToOneTest {
 		Session session = factory.openSession();
 		Transaction tx = session.beginTransaction();
 
-		Vendor v = new Vendor();
-		v.setVid(101);
-		v.setVname("Jio");
+		Vendor parent = new Vendor();
+		parent.setVid(101);
+		parent.setVname("Jio");
 
-		Customer c1 = new Customer();
-		c1.setCid(201);
-		c1.setCname("Patidar");
+		Customer child1 = new Customer();
+		child1.setCid(201);
+		child1.setCname("Patidar");
 
-		Customer c2 = new Customer();
-		c2.setCid(202);
-		c2.setCname("Mukati");
+		Customer child2 = new Customer();
+		child2.setCid(202);
+		child2.setCname("Mukati");
 
-		Customer c3 = new Customer();
-		c3.setCid(203);
-		c3.setCname("Paliya");
+		Customer child3 = new Customer();
+		child3.setCid(203);
+		child3.setCname("Paliya");
 
 		Set<Customer> s = new HashSet<>();
 
-		s.add(c1);
-		s.add(c2);
-		s.add(c3);
+		s.add(child1);
+		s.add(child2);
+		s.add(child3);
 
-		v.setChildren(s);
+		parent.setChildren(s);
 
-		session.save(v);
+		session.save(parent);
 
 		tx.commit();
 		session.close();

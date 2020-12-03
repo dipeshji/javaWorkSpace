@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.principleteacherupdate.Teacher"
+		table="teacherss">
+		<meta attribute="class-attribute">
+			these class contains teachers details.
+		</meta>
+
+		<id name="tId" type="int" column="tid" />
+
+		<property name="tName" column="tname" type="string" />
+		<property name="fKprincipleId" column="FKprinciple_id" insert="false" />
+	</class>
+</hibernate-mapping>

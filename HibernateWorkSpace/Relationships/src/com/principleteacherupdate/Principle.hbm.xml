@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.principleteacherupdate.Principle"
+		table="principles">
+		<meta attribute="class-attribute">
+			these class contains principle details
+		</meta>
+
+		<id name="pId" type="int" column="pid" />
+
+		<property name="pName" column="pname" type="string" />
+
+
+
+		<set name="children" cascade="all">
+			<key column="FKprinciple_id" />
+			<one-to-many class="com.principleteacherupdate.Teacher" />
+		</set>
+
+	</class>
+</hibernate-mapping>

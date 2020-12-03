@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.manageremployeeget.Employee" table="employees">
+		<meta attribute="class-attribute">
+			these class contains employees details.
+		</meta>
+
+		<id name="empId" type="int" column="eid" />
+
+		<property name="empName" column="ename" type="string" />
+	</class>
+</hibernate-mapping>
