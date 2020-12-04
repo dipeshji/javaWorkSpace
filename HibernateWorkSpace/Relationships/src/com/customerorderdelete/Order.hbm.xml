@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.customerorderdelete.Order" table="orders">
+		<meta attribute="class-attribute">
+			these class contains orders details.
+		</meta>
+
+		<id name="oId" type="int" column="oid" />
+
+		<property name="oName" column="oname" type="string" />
+	</class>
+</hibernate-mapping>

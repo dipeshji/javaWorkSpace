@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.laptopkeysupdate.Laptop" table="laptop">
+		<meta attribute="class-attribute">
+			these class contains laptop details
+		</meta>
+
+		<id name="lId" type="int" column="lid" />
+
+		<property name="lName" column="sname" type="ltring" />
+
+
+
+		<set name="children" cascade="all">
+			<key column="FKlap_id" />
+			<one-to-many class="com.laptopkeysupdate.Keys" />
+		</set>
+
+	</class>
+</hibernate-mapping>

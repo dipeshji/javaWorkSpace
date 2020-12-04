@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.menworkread.Work" table="work">
+		<meta attribute="class-attribute">
+			these class contains work details.
+		</meta>
+
+		<id name="wId" type="int" column="wid" />
+
+		<property name="wName" column="wname" type="string" />
+	</class>
+</hibernate-mapping>

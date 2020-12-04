@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.vehicletyreread.Vehicle"
+		table="vehicles">
+		<meta attribute="class-attribute">
+			these class contains vehicles details
+		</meta>
+
+		<id name="vId" type="int" column="vid" />
+
+		<property name="vName" column="vname" type="string" />
+
+
+
+		<set name="children" cascade="all">
+			<key column="FKvehicle_id" />
+			<one-to-many class="com.vehicletyreread.Tyre" />
+		</set>
+
+	</class>
+</hibernate-mapping>

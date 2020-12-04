@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.teamplayerdelete.Team"
+		table="teams">
+		<meta attribute="class-attribute">
+			these class contains teams details
+		</meta>
+
+		<id name="tId" type="int" column="tid" />
+
+		<property name="tName" column="tname" type="string" />
+
+
+
+		<set name="children" cascade="all">
+			<key column="FKteam_id" />
+			<one-to-many class="com.teamplayerdelete.player" />
+		</set>
+
+	</class>
+</hibernate-mapping>

@@ -35,11 +35,54 @@
 		<!-- <mapping resource="com/relationships/Customer.hbm.xml" /> <mapping 
 			resource="com/relationships/Vendor.hbm.xml" /> -->
 
-		<!-- <mapping resource="com/principleteacherupdate/Teacher.hbm.xml" />
-		<mapping resource="com/principleteacherupdate/Principle" /> -->
+		<!-- <mapping resource="com/principleteacherupdate/Teacher.hbm.xml" /> 
+			<mapping resource="com/principleteacherupdate/Principle" /> -->
+
+		<!-- <mapping resource="com/parentchild/Children.hbm.xml" /> <mapping resource="com/parentchild/Parent.hbm.xml" 
+			/> -->
+
+		<!-- <mapping resource="com/companymodelsupdate/Company.hbm.xml" /> <mapping 
+			resource="com/companymodelsupdate/Models.hbm.xml" /> -->
+
+		<!-- <mapping resource="com/vehicletyreread/Tyre.hbm.xml" /> <mapping resource="com/vehicletyreread/Vehicle.hbm.xml" 
+			/> -->
+
+		<!-- <mapping resource="com/personcardelete/Person.hbm.xml" /> <mapping 
+			resource="com/personcardelete/Car.hbm.xml" /> -->
+
+		<!-- <mapping resource="com/productpurchaseupdate/Product.hbm.xml" /> <mapping 
+			resource="com/productpurchaseupdate/Purchase.hbm.xml" /> -->
+
+		<!-- <mapping resource="com/customerorderdelete/Customer.hbm.xml" /> <mapping 
+			resource="com/customerorderdelete/Order.hbm.xml" /> -->
+
+		<!-- <mapping resource="com/userpostdelete/User.hbm.xml" />
+		<mapping resource="com/userpostdelete/Post.hbm.xml" /> -->
 		
-		<mapping resource="com/parentchild/Children.hbm.xml" />
-		<mapping resource="com/parentchild/Parent.hbm.xml" />
+		<!-- <mapping resource="com/studentcoursecreate/Student.hbm.xml" />
+		<mapping resource="com/studentcoursecreate/Course.hbm.xml" /> -->
+		
+		<!-- <mapping resource="com/salemencontact/Salemen.hbm.xml" />
+		<mapping resource="com/salemencontact/Contact.hbm.xml" /> -->
+		
+		<!-- <mapping resource="com/menworkread/Men.hbm.xml" />
+		<mapping resource="com/menworkread/Work.hbm.xml" /> -->
+		
+		<!-- <mapping resource="com/classroomstudentupdate/Student.hbm.xml" />
+		<mapping resource="com/classroomstudentupdate/ClassRoom.hbm.xml" /> -->
+		
+		<!-- <mapping resource="com/applicantinterviewrsupdate/Interviewrs.hbm.xml" />
+		<mapping resource="com/applicantinterviewrsupdate/Applicant.hbm.xml" /> -->
+		
+		<!-- <mapping resource="com.customerinvoiceread/Customer.hbm.xml" />
+		<mapping resource="com/applicantinterviewrsupdate/Invoice.hbm.xml" /> -->
+		
+		<!-- <mapping resource="com.laptopkeyscreate/Laptop.hbm.xml" />
+		<mapping resource="com/laptopkeyscreate/Keys.hbm.xml" /> -->
+		
+		<mapping resource="com.almirahclothesdelete/Almirah.hbm.xml" />
+		<mapping resource="com/almiraclothsdelete/Cloths.hbm.xml" />
+		
 
 	</session-factory>
 </hibernate-configuration>

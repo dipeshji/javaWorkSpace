@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.salemencontact.SaleMen" table="salesmen">
+		<meta attribute="class-attribute">
+			these class contains salesmen details
+		</meta>
+
+		<id name="sId" type="int" column="sid" />
+
+		<property name="sName" column="sname" type="string" />
+
+
+
+		<set name="children" cascade="all">
+			<key column="FKsalemen_id" />
+			<one-to-many class="com.salemencontact.Contact" />
+		</set>
+
+	</class>
+</hibernate-mapping>

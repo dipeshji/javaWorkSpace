@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.classroomstudentupdate.Student"
+		table="stud">
+		<meta attribute="class-attribute">
+			these class contains students details.
+		</meta>
+
+		<id name="sId" type="int" column="sid" />
+
+		<property name="sName" column="sname" type="string" />
+		<property name="fKcRoomId" column="FKcompany_id" insert="false" />
+	</class>
+</hibernate-mapping>

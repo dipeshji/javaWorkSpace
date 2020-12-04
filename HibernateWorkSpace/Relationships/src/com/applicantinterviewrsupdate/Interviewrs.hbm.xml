@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.applicantinterviewrsupdate.Interviewrs"
+		table="inter">
+		<meta attribute="class-attribute">
+			these class contains interviewrs details.
+		</meta>
+
+		<id name="iId" type="int" column="iid" />
+
+		<property name="iName" column="iname" type="string" />
+		<property name="fKappliId" column="FKappli_id" insert="false" />
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.productpurchaseupdate.Purchase" table="purchases">
+		<meta attribute="class-attribute">
+			these class contains purchase details.
+		</meta>
+
+		<id name="purId" type="int" column="purid" />
+
+		<property name="purDetails" column="purdetails" type="string" />
+		<property name="fKProductId" column="FKproduct_id" insert="false" />
+	</class>
+</hibernate-mapping>
