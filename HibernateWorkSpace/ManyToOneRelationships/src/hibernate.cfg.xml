@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC 
+  "-//Hibernate/Hibernate Configuration DTD 3.0//EN" 
+  "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+	<session-factory>
+
+		<property name="hibernate.connection.driver_class">
+			com.mysql.jdbc.Driver
+		</property>
+
+		<property name="hibernate.connection.url">
+			jdbc:mysql://localhost:3306/manytoone_db
+		</property>
+
+		<property name="connection.username">
+			root
+		</property>
+
+		<property name="connection.password">
+			1234
+		</property>
+
+		<!-- <property name="hbm2ddl.auto">create</property> -->
+
+		<property name="hbm2ddl.auto">update</property>
+
+		<property name="dialect">
+			org.hibernate.dialect.MySQL5Dialect
+		</property>
+
+		<property name="show_sql">
+			true
+		</property>
+
+		<!-- <mapping resource="com/shopkeepercustomercreate/Customer.hbm.xml" 
+			/> <mapping resource="com/shopkeepercustomercreate/Shopkeeper.hbm.xml" /> -->
+
+		<!-- <mapping resource="com/bagbookdelete/Bag.hbm.xml" />
+		<mapping resource="com/bagbookdelete/Book.hbm.xml" /> -->
+		
+		<!-- <mapping resource="com/buschildrenget/Bus.hbm.xml" />
+		<mapping resource="com/buschildrenget/Children.hbm.xml" /> -->
+		
+		<!-- <mapping resource="com/schoolclassupdate/School.hbm.xml" />
+		<mapping resource="com/schoolclassupdate/Class.hbm.xml" /> -->
+		
+		<!-- <mapping resource="com/countrystatesave/State.hbm.xml" />
+		<mapping resource="com/countrystatesave/Country.hbm.xml" /> -->
+		
+		<!-- <mapping resource="com/countrycontinentsget/Country.hbm.xml" />
+		<mapping resource="com/countrycontinentsget/Continent.hbm.xml" /> -->
+		
+		<!-- <mapping resource="com/packetbiscuitscreate/Packet.hbm.xml" />
+		<mapping resource="com/packetbiscuitscreate/Biscuit.hbm.xml" /> -->
+		
+		<!-- <mapping resource="com/districttehsilget/District.hbm.xml" />
+		<mapping resource="com/districttehsilget/Thesil.hbm.xml" /> -->
+		
+		<mapping resource="com/categoryproductdelete/Category.hbm.xml" />
+		<mapping resource="com/districttehsilget/Product.hbm.xml" />
+
+	</session-factory>
+</hibernate-configuration>

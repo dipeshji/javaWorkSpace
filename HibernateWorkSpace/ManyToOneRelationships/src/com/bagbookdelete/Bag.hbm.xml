@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.bagbookdelete.Bag" table="bag">
+		<meta attribute="class-attribute">
+			these class contains bag details.
+		</meta>
+
+		<id name="bId" type="int" column="bid" />
+
+		<property name="bName" column="bname" type="string" />
+	</class>
+</hibernate-mapping>

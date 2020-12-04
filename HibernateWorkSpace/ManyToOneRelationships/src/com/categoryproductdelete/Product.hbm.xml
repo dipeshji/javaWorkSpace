@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.categoryproductdelete.Product" table="product">
+		<id name="pId" column="pid" />
+		<property name="pName" type="string" column="pname" />
+		<many-to-one name="parentObjects" column="Fkprod_id"
+			class="com.categoryproductdelete.Product" cascade="all" />
+	</class>
+</hibernate-mapping>

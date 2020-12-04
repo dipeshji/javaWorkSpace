@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.districttehsilget.District" table="district">
+		<meta attribute="class-attribute">
+			these class contains District details.
+		</meta>
+
+		<id name="dId" type="int" column="did" />
+
+		<property name="dName" column="dname" type="string" />
+	</class>
+</hibernate-mapping>

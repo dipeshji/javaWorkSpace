@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.countrystatesave.Country" table="country">
+		<meta attribute="class-attribute">
+			these class contains country details.
+		</meta>
+
+		<id name="cId" type="int" column="cid" />
+
+		<property name="cName" column="cname" type="string" />
+	</class>
+</hibernate-mapping>
