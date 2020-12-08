@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.teacherstudentget.Student" table="student">
+
+		<id name="sId" column="sid" />
+		<property name="sName" type="string" column="sname" />
+		<property name="FKteacherId" column="FKteacher_id"
+			insert="false" />
+
+		<many-to-one name="parentObjects" column="Fkteacher_id"
+			cascade="all" />
+	</class>
+</hibernate-mapping>

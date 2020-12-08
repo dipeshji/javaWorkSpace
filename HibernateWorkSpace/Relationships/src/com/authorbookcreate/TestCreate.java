@@ -15,11 +15,11 @@ public class TestCreate {
 		Transaction tx = session.beginTransaction();
 
 		Author parent = new Author();
-		parent.setaId(201);
+		parent.setaId(102);
 		parent.setaName("Dipesh");
 		
 		Author parent2 = new Author();
-		parent2.setaId(201);
+		parent2.setaId(101);
 		parent2.setaName("Mahesh");
 
 		Book child1 = new Book();

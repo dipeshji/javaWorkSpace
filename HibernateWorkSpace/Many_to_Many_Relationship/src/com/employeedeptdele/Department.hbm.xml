@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.empoyeedeptdele.Department" table="departments">
+
+		<id name="dId" column="did" />
+
+		<property name="dName" column="dname" length="20" />
+
+		<set name="employees" cascade="all" table="depats_emps">
+
+			<key column="dept_id" />
+			<many-to-many class="com.empoyeedeptdele.Employees"
+				column="emp_id" />
+
+		</set>
+
+	</class>
+
+</hibernate-mapping>

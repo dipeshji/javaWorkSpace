@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.schoolbusescreate.Bus" table="bus">
+
+		<id name="bId" column="bid" />
+		<property name="bName" type="string" column="bname" />
+		
+	
+
+		<many-to-one name="parentObjects" column="Fkschool_id"
+			cascade="all" />
+	</class>
+</hibernate-mapping>
