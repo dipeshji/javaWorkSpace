@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.managerdepartmentdelete.Department"
+		table="department">
+
+		<id name="dId" column="did">
+			<generator class="foreign">
+				<param name="property">parent</param>
+			</generator>
+		</id>
+		<property name="dName" column="dname" length="30" />
+
+		<one-to-one name="parent"
+			class="com.managerdepartmentdelete.Manager" cascade="all" />
+
+	</class>
+</hibernate-mapping>

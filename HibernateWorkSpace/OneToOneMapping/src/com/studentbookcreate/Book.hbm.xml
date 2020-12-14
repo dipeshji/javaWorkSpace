@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.studentbookcreate.Book" table="book">
+
+		<id name="bId" column="bid">
+			<generator class="foreign">
+				<param name="property">parent</param>
+			</generator>
+		</id>
+		<property name="bName" column="bname" length="30" />
+
+		<one-to-one name="parent"
+			class="com.studentbookcreate.Student" cascade="all" />
+
+	</class>
+</hibernate-mapping>

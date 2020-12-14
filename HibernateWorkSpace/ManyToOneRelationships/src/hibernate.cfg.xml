@@ -37,29 +37,32 @@
 		<!-- <mapping resource="com/shopkeepercustomercreate/Customer.hbm.xml" 
 			/> <mapping resource="com/shopkeepercustomercreate/Shopkeeper.hbm.xml" /> -->
 
-		<!-- <mapping resource="com/bagbookdelete/Bag.hbm.xml" />
-		<mapping resource="com/bagbookdelete/Book.hbm.xml" /> -->
-		
-		<!-- <mapping resource="com/buschildrenget/Bus.hbm.xml" />
-		<mapping resource="com/buschildrenget/Children.hbm.xml" /> -->
-		
-		<!-- <mapping resource="com/schoolclassupdate/School.hbm.xml" />
-		<mapping resource="com/schoolclassupdate/Class.hbm.xml" /> -->
-		
-		<!-- <mapping resource="com/countrystatesave/State.hbm.xml" />
-		<mapping resource="com/countrystatesave/Country.hbm.xml" /> -->
-		
-		<!-- <mapping resource="com/countrycontinentsget/Country.hbm.xml" />
-		<mapping resource="com/countrycontinentsget/Continent.hbm.xml" /> -->
-		
-		<!-- <mapping resource="com/packetbiscuitscreate/Packet.hbm.xml" />
-		<mapping resource="com/packetbiscuitscreate/Biscuit.hbm.xml" /> -->
-		
-		<!-- <mapping resource="com/districttehsilget/District.hbm.xml" />
-		<mapping resource="com/districttehsilget/Thesil.hbm.xml" /> -->
-		
-		<mapping resource="com/categoryproductdelete/Category.hbm.xml" />
-		<mapping resource="com/districttehsilget/Product.hbm.xml" />
+		<!-- <mapping resource="com/bagbookdelete/Bag.hbm.xml" /> <mapping resource="com/bagbookdelete/Book.hbm.xml" 
+			/> -->
+
+		<!-- <mapping resource="com/buschildrenget/Bus.hbm.xml" /> <mapping resource="com/buschildrenget/Children.hbm.xml" 
+			/> -->
+
+		<!-- <mapping resource="com/schoolclassupdate/School.hbm.xml" /> <mapping 
+			resource="com/schoolclassupdate/Class.hbm.xml" /> -->
+
+		<!-- <mapping resource="com/countrystatesave/State.hbm.xml" /> <mapping 
+			resource="com/countrystatesave/Country.hbm.xml" /> -->
+
+		<!-- <mapping resource="com/countrycontinentsget/Country.hbm.xml" /> <mapping 
+			resource="com/countrycontinentsget/Continent.hbm.xml" /> -->
+
+		<!-- <mapping resource="com/packetbiscuitscreate/Packet.hbm.xml" /> <mapping 
+			resource="com/packetbiscuitscreate/Biscuit.hbm.xml" /> -->
+
+		<!-- <mapping resource="com/districttehsilget/District.hbm.xml" /> <mapping 
+			resource="com/districttehsilget/Thesil.hbm.xml" /> -->
+
+		<!-- <mapping resource="com/categoryproductdelete/Category.hbm.xml" /> 
+			<mapping resource="com/districttehsilget/Product.hbm.xml" /> -->
+
+		<mapping resource="com/authorbooksupdate/Author.hbm.xml" />
+		<mapping resource="com/authorbooksupdate/Books.hbm.xml" />
 
 	</session-factory>
 </hibernate-configuration>

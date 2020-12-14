@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.authorbookupdate.Author" table="authors">
+
+		<id name="aId" column="aid" />
+
+		<property name="aName" column="aname" length="20" />
+
+		<set name="books" cascade="all" table="authors_books">
+
+			<key column="author_id" />
+			<many-to-many class="com.authorbookupdate.Book"
+				column="book_id" />
+
+		</set>
+
+	</class>
+
+</hibernate-mapping>

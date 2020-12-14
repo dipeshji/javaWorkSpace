@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.userpostcreate.Post" table="post">
+
+		<id name="pId" column="pid" />
+		<property name="pName" type="string" column="pname" />
+
+
+		<property name="FKuserId" column="FKuser_id" insert="false"
+			update="false" />
+
+		<many-to-one name="parentObjects" column="Fkuser_id"
+			cascade="all" />
+	</class>
+</hibernate-mapping>

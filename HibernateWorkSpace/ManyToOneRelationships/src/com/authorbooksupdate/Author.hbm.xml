@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.authorbooksupdate.Author" table="author">
+		<meta attribute="class-attribute">
+			these class contains author details.
+		</meta>
+
+		<id name="aId" type="int" column="aid" />
+
+		<property name="aName" column="aname" type="string" />
+	</class>
+</hibernate-mapping>

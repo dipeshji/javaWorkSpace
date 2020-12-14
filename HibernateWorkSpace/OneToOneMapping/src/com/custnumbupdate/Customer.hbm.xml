@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.peoplelicenseupdate.License" table="license">
+
+		<id name="lId" column="lid">
+			<generator class="foreign">
+				<param name="property">parent</param>
+			</generator>
+		</id>
+		<property name="lNum" column="lnum" />
+
+		<one-to-one name="parent"
+			class="com.peoplelicenseupdate.People" cascade="all" />
+
+	</class>
+</hibernate-mapping>

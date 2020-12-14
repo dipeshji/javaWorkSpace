@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.employeetodoupdate.ToDo" table="todo">
+
+		<id name="tId" column="tid" />
+		<property name="tTask" type="string" column="ttask" />
+		<property name="FKEmpId" column="FKemp_id" insert="false" />
+
+		<many-to-one name="parentObjects" column="FKemp_id"
+			cascade="all" />
+	</class>
+</hibernate-mapping>

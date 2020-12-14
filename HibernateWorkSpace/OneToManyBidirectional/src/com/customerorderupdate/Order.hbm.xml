@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.customerorderupdate.Order" table="orders">
+
+		<id name="oId" column="oid" />
+		<property name="oItem" type="string" column="oItem" />
+		<property name="FKCustId" column="FKcust_id" insert="false" />
+
+		<many-to-one name="parentObjects" column="Fcust_id"
+			cascade="all" />
+	</class>
+</hibernate-mapping>
