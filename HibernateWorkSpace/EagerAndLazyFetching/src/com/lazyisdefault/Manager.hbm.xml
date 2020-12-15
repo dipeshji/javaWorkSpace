@@ -15,7 +15,7 @@
 
 
 
-		<set name="children" cascade="all" lazy="true" fetch="select">
+		<set name="children" cascade="all" lazy="true">
 			<key column="manager_id" />
 			<one-to-many class="com.lazyisdefault.Employee" />
 		</set>

@@ -18,13 +18,13 @@ public class TestLazy {
 		Object obj = session.get(Manager.class, 101);
 		Manager mang = (Manager) obj;
 
-		Set child = mang.getChildren();
-		Iterator itr = child.iterator();
-
-		Employee emp;
-		while (itr.hasNext()) {
-			emp = (Employee) itr.next();
-			System.out.println(emp.getEmpName() + " " + emp.getEmpId());
-		}
+//		Set child = mang.getChildren();
+//		Iterator itr = child.iterator();
+//
+//		Employee emp;
+//		while (itr.hasNext()) {
+//			emp = (Employee) itr.next();
+//			System.out.println(emp.getEmpName() + " " + emp.getEmpId());
+//		}
 	}
 }

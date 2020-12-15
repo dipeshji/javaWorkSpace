@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.ordersproductsdelete.Orders" table="orders">
+
+		<id name="oId" column="oid" />
+
+		<property name="oName" column="oname" length="20" />
+
+		<set name="prodcts" cascade="all" table="prods_ords">
+
+			<key column="prod_id" />
+			<many-to-many class="com.ordersproductsdelete.Orders"
+				column="ord_id" />
+
+		</set>
+
+	</class>
+
+</hibernate-mapping>

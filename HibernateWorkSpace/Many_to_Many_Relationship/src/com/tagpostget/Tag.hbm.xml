@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping> 
+ <class name="com.projectempget.Project" table="projects">  
+        
+  <id name="pId" column="pid" />
+
+  <property name="pName" column="pname" length="20"/>
+
+  <set name="employees" inverse="false" cascade="all" table="emps_pojs">
+     
+      <key column="project_id" />
+      <many-to-many class="com.projectempget.Employee" column="emp_id "/>
+
+  </set>
+
+  </class> 
+  
+  
+</hibernate-mapping>
