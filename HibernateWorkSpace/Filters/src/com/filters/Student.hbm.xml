@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.filters.Student" table="student">
+		<id name="studentId">
+			<column name="student_id" />
+		</id>
+
+		<property name="studentName" column="s_name" type="string" />
+		<property name="studentAge" column="s_age" type="int" />
+		<property name="address" column="s_address" type="string" />
+
+		<filter name="studentName" condition="s_name like '%D%'" />
+		<filter name="studentAge" condition="s_age>=:age" />
+		<filter name="studentId" condition="student_Id>:sId" />
+	</class>
+
+	<filter-def name="studentName" />
+	<filter-def name="studentAge">
+		<filter-param name="age" type="int" />
+	</filter-def>
+
+	<filter-def name="studentId">
+		<filter-param name="sId" type="int" />
+	</filter-def>
+
+</hibernate-mapping>
