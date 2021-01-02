@@ -31,7 +31,7 @@ public class HqlMain extends Throwable {
 		System.out.println("main started");
 
 //		selectAllHql();
-//		selectAllSql();
+		selectAllSql();
 //		selectAllCriteria();
 //		getSomeColumnSql();
 //		getSomeColumnHql();
@@ -65,7 +65,7 @@ public class HqlMain extends Throwable {
 //		sumHql();
 //		sumCriteria();
 //		distinctHql();
-		distinctCriteria();
+//		distinctCriteria();
 
 	}
 
@@ -105,6 +105,7 @@ public class HqlMain extends Throwable {
 		System.out.println("sql native query output");
 		PartDTO emp;
 		while (itr.hasNext()) {
+			System.out.println(itr.next());
 			emp = itr.next();
 			System.out.println(emp.getFirstName());
 
