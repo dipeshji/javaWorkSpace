@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="id3" class="com.mapbasedi.WelcomeBean">
+		<property name="studentData">
+			<map>
+				<entry key="k1">
+					<value>Dipesh</value>
+				</entry>
+				<entry key="k2">
+					<value>Palak</value>
+				</entry>
+				<entry key="k3">
+					<value>Mahesh</value>
+				</entry>
+			</map>
+		</property>
+	</bean>
+
+</beans>
